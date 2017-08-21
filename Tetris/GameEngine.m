@@ -174,6 +174,18 @@ static GameEngine *sharedEngine = nil;
                     break;
             }
         }
+        case ReverseThunder:
+        {
+            switch (self.currentFigure.orientation) {
+                case 0:
+                    return (self.currentFigure.pointsOnBoard[2].row + 1 < BoardRowSize && self.currentFigure.pointsOnBoard[3].column + 2 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[2].row + 1][self.currentFigure.pointsOnBoard[2].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row][self.currentFigure.pointsOnBoard[3].column + 2] == [NSNull null]);
+                    break;
+                    
+                case 1:
+                    return (self.currentFigure.pointsOnBoard[2].column - 1 >= 0 && self.currentFigure.pointsOnBoard[0].row - 2 >= 0 &&  self.board[self.currentFigure.pointsOnBoard[2].row][self.currentFigure.pointsOnBoard[2].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[0].row - 2][self.currentFigure.pointsOnBoard[0].column] == [NSNull null]);
+                    break;
+            }
+        }
     }
     return NO;
 }

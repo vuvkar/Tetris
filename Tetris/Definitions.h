@@ -17,12 +17,12 @@
 
 
 typedef NS_ENUM(NSInteger, FigureTypes) {
+    ReverseThunder,
     Thunder,
     Row,
     Cube,
     Mushroom
     
-   // ReverseIdeal,
    // Seven,
    // ReverseSeven,
 };
