@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Play View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="PlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOM-y0-SUf" customClass="BoardView">
+                                <rect key="frame" x="15" y="66" width="290" height="435"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Cbz-wK-j5v" appends="YES" id="3lG-Zu-oYp"/>
+                                    <outletCollection property="gestureRecognizers" destination="xXN-Kx-Zkh" appends="YES" id="CIq-5d-Znq"/>
+                                    <outletCollection property="gestureRecognizers" destination="eyD-FB-QVx" appends="YES" id="JKl-FQ-UQ8"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <connections>
+                        <outlet property="LeftSwipeGestureRecognizer" destination="xXN-Kx-Zkh" id="7Sd-im-kKN"/>
+                        <outlet property="RightSwipeGestureRecognizer" destination="Cbz-wK-j5v" id="5pv-KW-kuh"/>
+                        <outlet property="board" destination="BOM-y0-SUf" id="EKB-tc-v6Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Cbz-wK-j5v">
+                    <connections>
+                        <action selector="takeReight:" destination="BYZ-38-t0r" id="Xnj-d3-Yd6"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="xXN-Kx-Zkh">
+                    <connections>
+                        <action selector="takeLeft:" destination="BYZ-38-t0r" id="SZT-MM-K1g"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer id="eyD-FB-QVx">
+                    <connections>
+                        <action selector="rotate:" destination="BYZ-38-t0r" id="xEo-hN-272"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="116.25" y="123.59154929577466"/>
+        </scene>
+    </scenes>
+</document>
