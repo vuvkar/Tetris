@@ -115,49 +115,45 @@ static int ident = 1;
         {
             switch (self.orientation) {
                 case 0:{
-                    if (self.pointsOnBoard[1].row + 1 < BoardRowSize && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row + 1][self.pointsOnBoard[1].column] == [NSNull null]) {
-                        self.matrix = @[@[@1, @0], @[@1, @1], @[@1, @0]];
-                        [self.pointsOnBoard replaceObjectAtIndex:0 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1 andColumn:self.pointsOnBoard[1].column]];
-                        self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[2]];
-                        self.orientation++;
-                        self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
-                        [self.delegate rotateFigure:self];
-                    }
+                    
+                    self.matrix = @[@[@1, @0], @[@1, @1], @[@1, @0]];
+                    [self.pointsOnBoard replaceObjectAtIndex:0 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1 andColumn:self.pointsOnBoard[1].column]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[2]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
+                    
                     break;
                 }
                 case 1:{
-                    if (self.pointsOnBoard[1].column - 1 >= 0 && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row ][self.pointsOnBoard[1].column - 1] == [NSNull null]){
-                        self.matrix = @[@[@0, @1, @0], @[@1, @1, @1]];
-                        [self.pointsOnBoard replaceObjectAtIndex:3 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column - 1]];
-                        self.leftestAndRightestCells = @[self.pointsOnBoard[3], self.pointsOnBoard[[self.pointsOnBoard count] - 2]];
-                        self.orientation++;
-                        self.anchorPoint = [MatrixPoint initWithRow:(self.pointsOnBoard[3].row + 1) andColumn:self.pointsOnBoard[3].column];
-                        [self.delegate rotateFigure:self];
-                    }
+                    self.matrix = @[@[@0, @1, @0], @[@1, @1, @1]];
+                    [self.pointsOnBoard replaceObjectAtIndex:3 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column - 1]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[3], self.pointsOnBoard[[self.pointsOnBoard count] - 2]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:(self.pointsOnBoard[3].row + 1) andColumn:self.pointsOnBoard[3].column];
+                    [self.delegate rotateFigure:self];
                     break;
                 }
                 case 2:{
-                    if (self.pointsOnBoard[1].row - 1 >= 0 && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row - 1][self.pointsOnBoard[1].column] == [NSNull null]){
-                        self.matrix = @[@[@0, @1], @[@1, @1], @[@0, @1]];
-                        [self.pointsOnBoard replaceObjectAtIndex:2 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row - 1 andColumn:self.pointsOnBoard[1].column]];
-                        self.leftestAndRightestCells = @[self.pointsOnBoard[3], self.pointsOnBoard[[self.pointsOnBoard count] - 2]];
-                        self.orientation++;
-                        self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column - 1];
-                        [self.delegate rotateFigure:self];
-                    }
+                    
+                    self.matrix = @[@[@0, @1], @[@1, @1], @[@0, @1]];
+                    [self.pointsOnBoard replaceObjectAtIndex:2 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row - 1 andColumn:self.pointsOnBoard[1].column]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[3], self.pointsOnBoard[[self.pointsOnBoard count] - 2]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column - 1];
+                    [self.delegate rotateFigure:self];
+                    
                     break;
                 }
                 case 3:{
-                    if (self.pointsOnBoard[1].column + 1 < BoardColumnsSize && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row][self.pointsOnBoard[1].column + 1] == [NSNull null]){
-                        self.matrix = @[@[@1, @1, @1], @[@0, @1, @0]];
-                        [self.pointsOnBoard replaceObjectAtIndex:0 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column + 1]];
-                        [self.pointsOnBoard exchangeObjectAtIndex:0 withObjectAtIndex:3];
-                        [self.pointsOnBoard exchangeObjectAtIndex:2 withObjectAtIndex:3];
-                        self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[[self.pointsOnBoard count] - 2]];
-                        self.orientation = 0;
-                        self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
-                        [self.delegate rotateFigure:self];
-                    }
+                    self.matrix = @[@[@1, @1, @1], @[@0, @1, @0]];
+                    [self.pointsOnBoard replaceObjectAtIndex:0 withObject:[MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column + 1]];
+                    [self.pointsOnBoard exchangeObjectAtIndex:0 withObjectAtIndex:3];
+                    [self.pointsOnBoard exchangeObjectAtIndex:2 withObjectAtIndex:3];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[[self.pointsOnBoard count] - 2]];
+                    self.orientation = 0;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
                     break;
                 }
             }
@@ -167,27 +163,25 @@ static int ident = 1;
         {
             switch (self.orientation){
                 case 0:{
-                    if(self.pointsOnBoard[1].row - 2 >= 0 && self.pointsOnBoard[1].row + 1 < BoardRowSize && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row - 2][self.pointsOnBoard[1].column] == [NSNull null] && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row - 1][self.pointsOnBoard[1].column] == [NSNull null] && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row + 1][self.pointsOnBoard[1].column] == [NSNull null]){
-                        self.matrix = @[@[@1], @[@1], @[@1], @[@1]];
-                        MatrixPoint *point = self.pointsOnBoard[1];
-                        self.pointsOnBoard = [NSMutableArray arrayWithArray:@[point, [MatrixPoint initWithRow:point.row + 1 andColumn:point.column], [MatrixPoint initWithRow:point.row - 1 andColumn:point.column], [MatrixPoint initWithRow:point.row - 2 andColumn:point.column]]];
-                        self.leftestAndRightestCells = @[self.pointsOnBoard[1], self.pointsOnBoard[3]];
-                        self.orientation ++;
-                        self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column];
-                        [self.delegate rotateFigure:self];
-                    }
+                    
+                    self.matrix = @[@[@1], @[@1], @[@1], @[@1]];
+                    MatrixPoint *point = self.pointsOnBoard[1];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[point, [MatrixPoint initWithRow:point.row + 1 andColumn:point.column], [MatrixPoint initWithRow:point.row - 1 andColumn:point.column], [MatrixPoint initWithRow:point.row - 2 andColumn:point.column]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[1], self.pointsOnBoard[3]];
+                    self.orientation ++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column];
+                    [self.delegate rotateFigure:self];
+                    
                     break;
                 }
                 case 1:{
-                    if(self.pointsOnBoard[0].column - 1 >= 0 && self.pointsOnBoard[0].column + 2 < BoardColumnsSize && [GameEngine sharedEngine].board[self.pointsOnBoard[0].row ][self.pointsOnBoard[0].column - 1] == [NSNull null] && [GameEngine sharedEngine].board[self.pointsOnBoard[0].row ][self.pointsOnBoard[0].column + 1] == [NSNull null] && [GameEngine sharedEngine].board[self.pointsOnBoard[0].row ][self.pointsOnBoard[0].column + 2] == [NSNull null]){
-                        self.matrix = @[@[@1, @1, @1, @1]];
-                        MatrixPoint *point = self.pointsOnBoard[0];
-                        self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:point.row  andColumn:point.column - 1], point, [MatrixPoint initWithRow:point.row  andColumn:point.column + 1], [MatrixPoint initWithRow:point.row  andColumn:point.column + 2]]];
-                        self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[[self.pointsOnBoard count] - 1]];
-                        self.orientation = 0;
-                        self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
-                        [self.delegate rotateFigure:self];
-                    }
+                    self.matrix = @[@[@1, @1, @1, @1]];
+                    MatrixPoint *point = self.pointsOnBoard[0];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:point.row  andColumn:point.column - 1], point, [MatrixPoint initWithRow:point.row  andColumn:point.column + 1], [MatrixPoint initWithRow:point.row  andColumn:point.column + 2]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[[self.pointsOnBoard count] - 1]];
+                    self.orientation = 0;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
                     break;
                 }
             }
@@ -197,18 +191,16 @@ static int ident = 1;
         {
             switch (self.orientation) {
                 case 0:
-                    if(self.pointsOnBoard[0].column + 1 < BoardColumnsSize && self.pointsOnBoard[1].column - 1 >= 0 && [GameEngine sharedEngine].board[self.pointsOnBoard[0].row ][self.pointsOnBoard[0].column + 1] == [NSNull null] && [GameEngine sharedEngine].board[self.pointsOnBoard[1].row ][self.pointsOnBoard[1].column - 1] == [NSNull null] ) {
-                        self.matrix = @[ @[@0, @1, @1], @[@1, @1, @0]];
-                        self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[2].row andColumn:self.pointsOnBoard[2].column - 2 ], self.pointsOnBoard[1], self.pointsOnBoard[0], [MatrixPoint initWithRow:self.pointsOnBoard[3].row + 2 andColumn:self.pointsOnBoard[3].column]]];
-                        self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row + 1 andColumn:self.pointsOnBoard[0].column];
-                        self.leftestAndRightestCells = @[self.pointsOnBoard[0], [self.pointsOnBoard lastObject]];
-                        self.orientation++;
-                        [self.delegate rotateFigure:self];
-                    }
+                    self.matrix = @[ @[@0, @1, @1], @[@1, @1, @0]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[2].row andColumn:self.pointsOnBoard[2].column - 2 ], self.pointsOnBoard[1], self.pointsOnBoard[0], [MatrixPoint initWithRow:self.pointsOnBoard[3].row + 2 andColumn:self.pointsOnBoard[3].column]]];
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row + 1 andColumn:self.pointsOnBoard[0].column];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], [self.pointsOnBoard lastObject]];
+                    self.orientation++;
+                    [self.delegate rotateFigure:self];
                     break;
                 case 1:
                     self.matrix = @[ @[@1, @0], @[@1, @1], @[@0, @1]];
-                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[self.pointsOnBoard[2], self.pointsOnBoard[1], [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[2].column + 2 ],   [MatrixPoint initWithRow:self.pointsOnBoard[3].row - 2 andColumn:self.pointsOnBoard[3].column]]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[self.pointsOnBoard[2], self.pointsOnBoard[1], [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[2].column + 1 ],   [MatrixPoint initWithRow:self.pointsOnBoard[3].row - 2 andColumn:self.pointsOnBoard[3].column]]];
                     self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
                     self.leftestAndRightestCells = @[self.pointsOnBoard[0], [self.pointsOnBoard lastObject]];
                     self.orientation = 0;

@@ -40,6 +40,6 @@
 -(void)startTact;
 -(void)moveCurrentFigure;
 -(void)startFalling;
-
+-(BOOL)isPossibleToRotate;
 
 @end

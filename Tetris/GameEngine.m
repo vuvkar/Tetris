@@ -57,7 +57,8 @@ static GameEngine *sharedEngine = nil;
         }
         if(self.shouldRotate)
         {
-            [self.currentFigure rotate];
+            if([self isPossibleToRotate])
+                [self.currentFigure rotate];
             self.shouldRotate = NO;
         }
         for (MatrixPoint *temp in [self.currentFigure pointsOnBoard]) {
@@ -120,5 +121,60 @@ static GameEngine *sharedEngine = nil;
     self.currentFigure = self.generatedFigure;
     self.generatedFigure = nil;
     [self.delegate newFigureIsCreated:self.currentFigure];
+}
+
+-(BOOL)isPossibleToRotate
+{
+    switch (self.currentFigure.type) {
+        case Cube:
+            return NO;
+            break;
+        case Row:
+        {
+            switch (self.currentFigure.orientation) {
+                case 0:
+                    return (self.currentFigure.pointsOnBoard[1].row - 2 >= 0 && self.currentFigure.pointsOnBoard[1].row + 1 < BoardRowSize && self.board[self.currentFigure.pointsOnBoard[1].row - 2][self.currentFigure.pointsOnBoard[1].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row - 1][self.currentFigure.pointsOnBoard[1].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row + 1][self.currentFigure.pointsOnBoard[1].column] == [NSNull null]);
+                    break;
+                case 1:
+                    return (self.currentFigure.pointsOnBoard[0].column - 1 >= 0 && self.currentFigure.pointsOnBoard[0].column + 2 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[0].row ][self.currentFigure.pointsOnBoard[0].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[0].row ][self.currentFigure.pointsOnBoard[0].column + 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[0].row ][self.currentFigure.pointsOnBoard[0].column + 2] == [NSNull null]);
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        case Thunder:
+        {
+            switch (self.currentFigure.orientation) {
+                case 0:
+                    return (self.currentFigure.pointsOnBoard[0].column + 1 < BoardColumnsSize && self.currentFigure.pointsOnBoard[1].column - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[0].row ][self.currentFigure.pointsOnBoard[0].column + 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null] );
+                    break;
+                case 1:
+                   return (self.currentFigure.pointsOnBoard[2].column + 1 < BoardColumnsSize && self.currentFigure.pointsOnBoard[3].row - 2 - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[3].row - 2 ][self.currentFigure.pointsOnBoard[3].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row][self.currentFigure.pointsOnBoard[2].column + 1] == [NSNull null]);
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        case Mushroom:
+        {
+            switch (self.currentFigure.orientation) {
+                case 0:
+                    return (self.currentFigure.pointsOnBoard[1].row + 1 < BoardRowSize && self.board[self.currentFigure.pointsOnBoard[1].row + 1][self.currentFigure.pointsOnBoard[1].column] == [NSNull null]);
+                    break;
+                case 1:
+                    return (self.currentFigure.pointsOnBoard[1].column - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[1].row ][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null]);
+                    break;
+                case 2:
+                    return (self.currentFigure.pointsOnBoard[1].row - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[1].row - 1][self.currentFigure.pointsOnBoard[1].column] == [NSNull null]);
+                    break;
+                case 3:
+                    return (self.currentFigure.pointsOnBoard[1].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[1].row][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null]);
+                    break;
+            }
+        }
+    }
+    return NO;
 }
 @end
