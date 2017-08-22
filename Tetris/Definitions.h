@@ -12,19 +12,18 @@
 #define BoardRowSize 15
 #define BoardColumnsSize 10
 #define InitalTactSpeed 0.6
-#define HowManyFigures 1
+#define HowManyFigures 7
 #define CellSize 290 / BoardColumnsSize
 
 
 typedef NS_ENUM(NSInteger, FigureTypes) {
+    Seven,
+    ReverseSeven,
     ReverseThunder,
     Thunder,
     Row,
     Cube,
-    Mushroom
-    
-   // Seven,
-   // ReverseSeven,
+    Mushroom 
 };
 
 typedef NS_ENUM(NSInteger, Directions) {

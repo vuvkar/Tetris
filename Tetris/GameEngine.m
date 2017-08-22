@@ -1,4 +1,4 @@
-  //
+//
 //  GameEngine.m
 //  Tetris
 //
@@ -143,14 +143,14 @@ static GameEngine *sharedEngine = nil;
             }
             break;
         }
-        case Thunder:
+        case Thunder: //checked
         {
             switch (self.currentFigure.orientation) {
                 case 0:
-                    return (self.currentFigure.pointsOnBoard[0].column + 1 < BoardColumnsSize && self.currentFigure.pointsOnBoard[1].column - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[0].row ][self.currentFigure.pointsOnBoard[0].column + 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null] );
+                    return (self.currentFigure.pointsOnBoard[2].column - 2 >= 0 && self.currentFigure.pointsOnBoard[3].row + 2 >= 0 && self.board[self.currentFigure.pointsOnBoard[2].row ][self.currentFigure.pointsOnBoard[2].column - 2] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[3].row + 2][self.currentFigure.pointsOnBoard[3].column ] == [NSNull null] );
                     break;
                 case 1:
-                   return (self.currentFigure.pointsOnBoard[2].column + 1 < BoardColumnsSize && self.currentFigure.pointsOnBoard[3].row - 2 - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[3].row - 2 ][self.currentFigure.pointsOnBoard[3].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row][self.currentFigure.pointsOnBoard[2].column + 1] == [NSNull null]);
+                    return (self.currentFigure.pointsOnBoard[2].column + 1 < BoardColumnsSize && self.currentFigure.pointsOnBoard[3].row - 2 - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[3].row - 2 ][self.currentFigure.pointsOnBoard[3].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[0].row][self.currentFigure.pointsOnBoard[2].column + 1] == [NSNull null]);
                     break;
                 default:
                     break;
@@ -173,6 +173,7 @@ static GameEngine *sharedEngine = nil;
                     return (self.currentFigure.pointsOnBoard[1].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[1].row][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null]);
                     break;
             }
+            break;
         }
         case ReverseThunder:
         {
@@ -185,6 +186,43 @@ static GameEngine *sharedEngine = nil;
                     return (self.currentFigure.pointsOnBoard[2].column - 1 >= 0 && self.currentFigure.pointsOnBoard[0].row - 2 >= 0 &&  self.board[self.currentFigure.pointsOnBoard[2].row][self.currentFigure.pointsOnBoard[2].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[0].row - 2][self.currentFigure.pointsOnBoard[0].column] == [NSNull null]);
                     break;
             }
+            break;
+        }
+        case Seven:
+        {
+            switch (self.currentFigure.orientation) {
+                case 0:
+                    return (self.currentFigure.pointsOnBoard[1].row - 1 >= 0 && self.currentFigure.pointsOnBoard[1].row + 1 < BoardRowSize && self.currentFigure.pointsOnBoard[1].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[1].row - 1][self.currentFigure.pointsOnBoard[1].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row + 1][self.currentFigure.pointsOnBoard[1].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row + 1][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null]);
+                    break;
+                case 1:
+                    return (self.currentFigure.pointsOnBoard[1].column - 1 >= 0 && self.currentFigure.pointsOnBoard[1].row + 1 < BoardRowSize && self.currentFigure.pointsOnBoard[1].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[1].row + 1][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row ][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row ][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null]);
+                    break;
+                case 2:
+                    return (self.currentFigure.pointsOnBoard[2].row - 1 >= 0 && self.currentFigure.pointsOnBoard[2].row + 1 < BoardRowSize && self.currentFigure.pointsOnBoard[2].column - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[2].row + 1][self.currentFigure.pointsOnBoard[2].column ] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row - 1][self.currentFigure.pointsOnBoard[2].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row - 1][self.currentFigure.pointsOnBoard[2].column - 1] == [NSNull null]);
+                    break;
+                case 3:
+                    return (self.currentFigure.pointsOnBoard[1].column - 1 >= 0 && self.currentFigure.pointsOnBoard[1].row - 1 >= 0 && self.currentFigure.pointsOnBoard[1].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[1].row][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row ][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row - 1][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null]);
+                    break;
+            }
+            break;
+        }
+        case ReverseSeven:
+        {
+            switch (self.currentFigure.orientation) {
+                case 0:
+                    return (self.currentFigure.pointsOnBoard[2].row - 1 >= 0 && self.currentFigure.pointsOnBoard[2].row + 1 < BoardRowSize && self.currentFigure.pointsOnBoard[2].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[2].row + 1][self.currentFigure.pointsOnBoard[2].column ] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row - 1][self.currentFigure.pointsOnBoard[2].column] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row - 1][self.currentFigure.pointsOnBoard[2].column + 1] == [NSNull null]);
+                    break;
+                case 1:
+                    return (self.currentFigure.pointsOnBoard[1].column - 1 >= 0 && self.currentFigure.pointsOnBoard[1].row + 1 < BoardRowSize && self.currentFigure.pointsOnBoard[1].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[1].row][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row ][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row + 1][self.currentFigure.pointsOnBoard[1].column + 1] == [NSNull null]);
+                    break;
+                case 2:
+                    return (self.currentFigure.pointsOnBoard[1].column - 1 >= 0 && self.currentFigure.pointsOnBoard[1].row + 1 < BoardRowSize && self.currentFigure.pointsOnBoard[1].row - 1 >= 0 && self.board[self.currentFigure.pointsOnBoard[1].row + 1][self.currentFigure.pointsOnBoard[1].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row + 1 ][self.currentFigure.pointsOnBoard[1].column ] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[1].row - 1][self.currentFigure.pointsOnBoard[1].column] == [NSNull null]);
+                    break;
+                case 3:
+                    return (self.currentFigure.pointsOnBoard[2].row - 1 >= 0 && self.currentFigure.pointsOnBoard[2].column - 1 >= 0 && self.currentFigure.pointsOnBoard[2].column + 1 < BoardColumnsSize && self.board[self.currentFigure.pointsOnBoard[2].row - 1][self.currentFigure.pointsOnBoard[2].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row][self.currentFigure.pointsOnBoard[2].column - 1] == [NSNull null] && self.board[self.currentFigure.pointsOnBoard[2].row][self.currentFigure.pointsOnBoard[2].column + 1] == [NSNull null]);
+                    break;
+            }
+            break;
         }
     }
     return NO;

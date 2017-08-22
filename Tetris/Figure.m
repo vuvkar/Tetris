@@ -38,6 +38,25 @@ static int ident = 1;
                 self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
                 break;
             }
+            case Seven:{
+                self.matrix = @[@[@1, @1, @1], @[@0, @0, @1]];
+                self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 - 2], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 - 1], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 ], [MatrixPoint initWithRow:BoardRowSize - 2 andColumn:BoardColumnsSize / 2 ]]];
+                self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[3]];
+                self.cellCount = 4;
+                self.orientation = 0;
+                self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                break;
+            }
+            case ReverseSeven:{
+                self.matrix = @[@[@1, @1, @1], @[@1, @0, @0]];
+                self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:BoardRowSize - 2 andColumn:BoardColumnsSize / 2 - 2], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 - 2], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 - 1], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 ]]];
+                self.leftestAndRightestCells = @[self.pointsOnBoard[1], self.pointsOnBoard[3]];
+                self.cellCount = 4;
+                self.orientation = 0;
+                self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[1].row andColumn:self.pointsOnBoard[1].column];
+                break;
+                
+            }
             case Row:{
                 self.matrix = @[@[@1, @1, @1, @1]];
                 self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 - 2], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 - 1], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 ], [MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2  + 1]]];
@@ -58,15 +77,15 @@ static int ident = 1;
                 break;
             }
             case ReverseThunder:{
-                    self.matrix = @[ @[@0, @1], @[@1, @1], @[@1, @0]];
-                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 ], [MatrixPoint initWithRow:BoardRowSize - 2 andColumn:BoardColumnsSize / 2  ],
-                                                                          [MatrixPoint initWithRow:BoardRowSize - 2 andColumn:BoardColumnsSize / 2 - 1],
-                                                                          [MatrixPoint initWithRow:BoardRowSize - 3 andColumn:BoardColumnsSize / 2 - 1]]];
-                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column - 1];
-                    self.leftestAndRightestCells = @[self.pointsOnBoard[2], self.pointsOnBoard[3]];
-                    self.cellCount = 4;
-                    break;
-                }
+                self.matrix = @[ @[@0, @1], @[@1, @1], @[@1, @0]];
+                self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:BoardRowSize - 1 andColumn:BoardColumnsSize / 2 ], [MatrixPoint initWithRow:BoardRowSize - 2 andColumn:BoardColumnsSize / 2  ],
+                                                                      [MatrixPoint initWithRow:BoardRowSize - 2 andColumn:BoardColumnsSize / 2 - 1],
+                                                                      [MatrixPoint initWithRow:BoardRowSize - 3 andColumn:BoardColumnsSize / 2 - 1]]];
+                self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column - 1];
+                self.leftestAndRightestCells = @[self.pointsOnBoard[2], self.pointsOnBoard[3]];
+                self.cellCount = 4;
+                break;
+            }
         }
         [GameEngine sharedEngine].generatedFigure = self;
     }
@@ -168,8 +187,85 @@ static int ident = 1;
             }
             break;
         }
+        case Seven:
+        {
+            switch (self.orientation) {
+                case 0:
+                    self.matrix = @[@[@1, @1], @[@1, @0], @[@1, @0]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[1].row - 1 andColumn:self.pointsOnBoard[1].column], self.pointsOnBoard[1], [MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1 andColumn:self.pointsOnBoard[1].column], [MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1 andColumn:self.pointsOnBoard[1].column + 1]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[2], self.pointsOnBoard[3]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[2].row andColumn:self.pointsOnBoard[2].column];
+                    [self.delegate rotateFigure:self];
+                    break;
+                case 1:
+                    self.matrix = @[@[@1, @0, @0], @[@1, @1, @1]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1 andColumn:self.pointsOnBoard[1].column - 1], [MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column - 1], self.pointsOnBoard[1], [MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column + 1]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[3]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
+                    break;
+                case 2:
+                    self.matrix = @[@[@0, @1], @[@0, @1], @[@1, @1]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[2].row + 1 andColumn:self.pointsOnBoard[2].column ], self.pointsOnBoard[2], [MatrixPoint initWithRow:self.pointsOnBoard[2].row - 1  andColumn:self.pointsOnBoard[2].column ],  [MatrixPoint initWithRow:self.pointsOnBoard[2].row - 1  andColumn:self.pointsOnBoard[2].column - 1]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[3], self.pointsOnBoard[2]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column - 1];
+                    [self.delegate rotateFigure:self];
+                    break;
+                case 3:
+                    self.matrix = @[@[@1, @1, @1], @[@0, @0, @1]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column - 1], self.pointsOnBoard[1], [MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column + 1],  [MatrixPoint initWithRow:self.pointsOnBoard[1].row - 1 andColumn:self.pointsOnBoard[1].column + 1]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[3]];
+                    self.orientation = 0;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
+                    break;
+            }
+            break;
+        }
+        case ReverseSeven:
+        {
+            switch (self.orientation) {
+                case 0:
+                    self.matrix = @[@[@1, @0], @[@1, @0], @[@1, @1]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[2].row + 1 andColumn:self.pointsOnBoard[2].column], self.pointsOnBoard[2], [MatrixPoint initWithRow:self.pointsOnBoard[2].row - 1 andColumn:self.pointsOnBoard[2].column], [MatrixPoint initWithRow:self.pointsOnBoard[2].row - 1 andColumn:self.pointsOnBoard[2].column + 1]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[3]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
+                    break;
+                case 1:
+                    self.matrix = @[@[@0, @0, @1], @[@1, @1, @1]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column - 1], self.pointsOnBoard[1],  [MatrixPoint initWithRow:self.pointsOnBoard[1].row  andColumn:self.pointsOnBoard[1].column + 1],  [MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1  andColumn:self.pointsOnBoard[1].column + 1]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[2]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row + 1 andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
+                    break;
+                case 2:
+                    self.matrix = @[@[@1, @1], @[@0, @1], @[@0, @1]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1 andColumn:self.pointsOnBoard[1].column - 1], [MatrixPoint initWithRow:self.pointsOnBoard[1].row + 1  andColumn:self.pointsOnBoard[1].column], self.pointsOnBoard[1], [MatrixPoint initWithRow:self.pointsOnBoard[1].row - 1  andColumn:self.pointsOnBoard[1].column]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[0], self.pointsOnBoard[3]];
+                    self.orientation++;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[0].row andColumn:self.pointsOnBoard[0].column];
+                    [self.delegate rotateFigure:self];
+                    break;
+                case 3:
+                    self.matrix = @[@[@1, @1, @1], @[@1, @0, @0]];
+                    self.pointsOnBoard = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.pointsOnBoard[2].row - 1 andColumn:self.pointsOnBoard[2].column - 1],  [MatrixPoint initWithRow:self.pointsOnBoard[2].row  andColumn:self.pointsOnBoard[2].column - 1], self.pointsOnBoard[2],  [MatrixPoint initWithRow:self.pointsOnBoard[2].row  andColumn:self.pointsOnBoard[2].column + 1]]];
+                    self.leftestAndRightestCells = @[self.pointsOnBoard[1], self.pointsOnBoard[3]];
+                    self.orientation = 0;
+                    self.anchorPoint = [MatrixPoint initWithRow:self.pointsOnBoard[1].row andColumn:self.pointsOnBoard[1].column];
+                    [self.delegate rotateFigure:self];
+                    break;
+            }
+            break;
+        }
         case Row:
         {
+            
             switch (self.orientation){
                 case 0:{
                     
