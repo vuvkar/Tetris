@@ -10,6 +10,7 @@
 #import "GameEngine.h"
 #import "BoardView.h"
 #import "CellView.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface PlayViewController : UIViewController
 

@@ -13,4 +13,6 @@
 
 @property int row;
 
+-(instancetype)initForFigure:(FigureTypes)figure;
+
 @end

@@ -18,7 +18,7 @@
         self.cells = [NSMutableArray arrayWithArray:@[]];
         for(int i = 0; i < [figure.pointsOnBoard count]; i++)
         {
-            CellView *cell = [[CellView alloc] init];
+            CellView *cell = [[CellView alloc] initForFigure:(FigureTypes)figure.type];
             [self addSubview:cell];
             cell.row = figure.pointsOnBoard[i].row;
             cell.frame = CGRectMake((figure.pointsOnBoard[i].column - figure.anchorPoint.column) * CellSize, (figure.anchorPoint.row - figure.pointsOnBoard[i].row) * CellSize, CellSize, CellSize);

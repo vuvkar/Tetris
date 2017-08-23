@@ -14,7 +14,7 @@
 
 @protocol FigureDelegate <NSObject>
 
--(void)moveFigureDown:(Figure*)figure;
+-(void)moveFigureDown:(Figure*)figure andHowManyRows:(int)rows;
 -(void)moveFigure:(Figure*)figure;
 -(void)rotateFigure:(Figure*)figure;
 
@@ -33,7 +33,6 @@
 @property (weak) id <FigureDelegate> delegate;
 @property BOOL notTheFirstStep;
 
-//-(void)moveDown;
 -(void)rotate;
 -(instancetype)initWithRandomType;
 -(void)goTo:(Directions)direction;

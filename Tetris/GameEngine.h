@@ -32,6 +32,9 @@
 @property BOOL shouldTheFigureGoLeftOrRight;
 @property Directions goingDirection;
 @property BOOL shouldRotate;
+@property BOOL isLastMove;
+@property double lastChanceSpeed;
+@property BOOL didSwipeDown;
 
 +(instancetype)sharedEngine;
 
@@ -41,5 +44,6 @@
 -(void)moveCurrentFigure;
 -(void)startFalling;
 -(BOOL)isPossibleToRotate;
+-(void)forceDown;
 
 @end

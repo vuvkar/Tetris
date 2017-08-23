@@ -9,7 +9,7 @@
 #ifndef Definitions_h
 #define Definitions_h
 
-#define BoardRowSize 15
+#define BoardRowSize 14
 #define BoardColumnsSize 10
 #define InitalTactSpeed 0.6
 #define HowManyFigures 7
@@ -17,10 +17,10 @@
 
 
 typedef NS_ENUM(NSInteger, FigureTypes) {
+    Thunder,
     Seven,
     ReverseSeven,
     ReverseThunder,
-    Thunder,
     Row,
     Cube,
     Mushroom 

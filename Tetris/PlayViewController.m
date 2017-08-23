@@ -8,6 +8,7 @@
 
 #import "PlayViewController.h"
 
+
 @interface PlayViewController () <GameEngineDelegate, FigureDelegate>
 @property (weak, nonatomic) IBOutlet BoardView *board;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *RightSwipeGestureRecognizer;
@@ -47,6 +48,9 @@
     [GameEngine sharedEngine].shouldTheFigureGoLeftOrRight = YES;
     [GameEngine sharedEngine].goingDirection = Left;
 }
+- (IBAction)swipeDown:(id)sender {
+    [GameEngine sharedEngine].didSwipeDown = YES;
+}
 
 - (void)newFigureIsCreated:(Figure*)figure
 {
@@ -54,9 +58,13 @@
     figure.delegate = self;
 }
 
-- (void)moveFigureDown:(Figure *)figure
+- (void)moveFigureDown:(Figure *)figure andHowManyRows:(int)rows
 {
-    [self.board moveFigureDown:figure];
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"chocolate_grows" ofType:@"wav"];
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
+    AudioServicesPlaySystemSound(soundID);
+    [self.board moveFigureDown:figure andHowManyRows:rows];
 }
 
 - (void)rowsAreDeleted:(NSMutableArray <NSNumber *> *)rows

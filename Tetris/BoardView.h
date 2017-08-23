@@ -16,7 +16,7 @@
 
 
 -(void)createFigure:(Figure*)figure;
--(void)moveFigureDown:(Figure*)figure;
+-(void)moveFigureDown:(Figure *)figure andHowManyRows:(int)rows;
 -(void)deleteRowsAtIndexes:(NSMutableArray <NSNumber *> *)indexes;
 -(void)rotate:(Figure*)figure;
 -(void)updateFigurePlace:(Figure*)figure;
