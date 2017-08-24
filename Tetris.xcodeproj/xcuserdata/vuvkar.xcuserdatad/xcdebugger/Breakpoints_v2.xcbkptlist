@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "-createFigure:"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-createFigure:"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-createFigure:"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-deleteRowsAtIndexes:"
             landmarkType = "7">
          </BreakpointContent>
@@ -374,107 +374,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-deleteRowsAtIndexes:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[BoardView deleteRowsAtIndexes:]_block_invoke"
-                  moduleName = "Tetris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
-                  timestampString = "525262358.369667"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "128">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[BoardView deleteRowsAtIndexes:]_block_invoke"
-                  moduleName = "Tetris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
-                  timestampString = "525262358.374956"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-deleteRowsAtIndexes:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[BoardView deleteRowsAtIndexes:]_block_invoke"
-                  moduleName = "Tetris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
-                  timestampString = "525262358.398968"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "399">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[BoardView deleteRowsAtIndexes:]_block_invoke"
-                  moduleName = "Tetris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
-                  timestampString = "525262358.404601"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "407">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
@@ -490,11 +394,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-deleteRowsAtIndexes:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__33-[BoardView deleteRowsAtIndexes:]_block_invoke"
+                  moduleName = "Tetris"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
+                  timestampString = "525263165.199411"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__33-[BoardView deleteRowsAtIndexes:]_block_invoke"
+                  moduleName = "Tetris"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
+                  timestampString = "525263165.202418"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tetris/BoardView.m"
+            timestampString = "525263367.493385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-deleteRowsAtIndexes:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tetris/BoardView.m"
+            timestampString = "525263367.493385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-moveFigureDown:andHowManyRows:"
             landmarkType = "7">
          </BreakpointContent>
@@ -538,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-rotate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -554,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-moveFigureDown:andHowManyRows:"
             landmarkType = "7">
          </BreakpointContent>
@@ -570,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "-rotate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -586,7 +554,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-rotate:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tetris/BoardView.m"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -602,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-rotate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -618,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-rotate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -634,27 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
             endingLineNumber = "90"
-            landmarkName = "-rotate:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
             landmarkName = "-rotate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -921,11 +889,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "-createFigure:"
             landmarkType = "7">
          </BreakpointContent>
@@ -937,11 +905,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-createFigure:"
             landmarkType = "7">
          </BreakpointContent>
@@ -969,11 +937,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-rotate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1001,11 +969,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-deleteRowsAtIndexes:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1049,11 +1017,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216921.875222"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-deleteRowsAtIndexes:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1976,11 +1944,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525216909.117672"
+            timestampString = "525263165.103953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "-initWithCoder:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1988,61 +1956,61 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525262137.213965"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-deleteRowsAtIndexes:"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__33-[BoardView deleteRowsAtIndexes:]_block_invoke"
                   moduleName = "Tetris"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
-                  timestampString = "525262358.470894"
+                  timestampString = "525263367.579371"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "2300">
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "1637">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.76"
+                  symbolName = "__copy_helper_block_.80"
                   moduleName = "Tetris"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
-                  timestampString = "525262358.47655"
+                  timestampString = "525263367.585897"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
                   offsetFromSymbolStart = "108">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.77"
+                  symbolName = "__destroy_helper_block_.81"
                   moduleName = "Tetris"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vuvkar/Downloads/Tetris/Tetris/BoardView.m"
-                  timestampString = "525262358.482694"
+                  timestampString = "525263367.591237"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
                   offsetFromSymbolStart = "59">
                </Location>
             </Locations>
@@ -2051,16 +2019,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tetris/BoardView.m"
-            timestampString = "525262141.458023"
+            timestampString = "525263367.493385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-deleteRowsAtIndexes:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tetris/FigureView.m"
+            timestampString = "525263367.493385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-initFromFigure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

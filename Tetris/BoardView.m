@@ -20,7 +20,6 @@
         self.layer.cornerRadius = 5;
         UIImage *cellImage = [UIImage imageNamed:@"normalCell.png"];
         [ImageManager resizeImage:cellImage withWidth:CellSize withHeight:CellSize];
-        
         for(int i = 0; i < BoardRowSize; i++)
             for(int j = 0; j < BoardColumnsSize; j++)
             {
@@ -29,6 +28,7 @@
                 cellImageView.frame = CGRectMake(CellSize * j, CellSize * i, CellSize, CellSize);
                 [self addSubview:cellImageView];
             }
+        self.cellSubviews = [NSMutableArray arrayWithArray:@[]];
     }
     return self;
 }
@@ -36,6 +36,9 @@
 -(void)createFigure:(Figure*)figure
 {
     FigureView* figureView = [[FigureView alloc] initFromFigure:figure];
+    for (CellView *temp in figureView.cells) {
+        [self.cellSubviews addObject:temp];
+    }
     CGFloat height = CellSize * [figure.matrix count];
     CGFloat width = CellSize * [figure.matrix[0] count];
     figureView.frame = CGRectMake(figure.anchorPoint.column  * CellSize, 0, width, height);
@@ -65,20 +68,16 @@
 {
     [UIView animateWithDuration:0.1 animations:^{
         for(int i = 0; i < [indexes count]; i++)
-            for (FigureView* subFigureView in [self subviews]) {
-                for (CellView* subCellView in [subFigureView subviews]) {
-                    if([subCellView isKindOfClass:[CellView class]] && subCellView.row == [indexes[i] intValue]){
-                        [subFigureView.cells removeObject:subCellView];
-                        [subCellView removeFromSuperview];
-                    }
-                    else if(subCellView.row > [indexes[i] intValue])
-                    {
-                        subCellView.frame = CGRectMake(subCellView.frame.origin.x, subCellView.frame.origin.y + CellSize, subCellView.frame.size.width, subCellView.frame.size.height);
-                        subCellView.row--;
-                    }
+            for (CellView* subCellView in self.cellSubviews) {
+                if(subCellView.row == [indexes[i] intValue]){
+                    [self.cellSubviews removeObject:subCellView];
+                    [subCellView removeFromSuperview];
                 }
-                if([subFigureView.cells count] == 0)
-                    [subFigureView removeFromSuperview];
+                else if(subCellView.row > [indexes[i] intValue])
+                {
+                    subCellView.frame = CGRectMake(subCellView.frame.origin.x, subCellView.frame.origin.y + CellSize, subCellView.frame.size.width, subCellView.frame.size.height);
+                    subCellView.row--;
+                }
             }
     }];
 }

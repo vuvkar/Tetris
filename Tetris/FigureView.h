@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Figure.h"
 #import "CellView.h"
+#import "BoardView.h"
 
 @interface FigureView : UIView
 

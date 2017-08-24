@@ -15,6 +15,7 @@
 
 @interface BoardView : UIView
 
+@property NSMutableArray <CellView *> *cellSubviews;
 
 -(void)createFigure:(Figure*)figure;
 -(void)moveFigureDown:(Figure *)figure andHowManyRows:(int)rows;
