@@ -10,7 +10,7 @@
 
 @implementation CellView
 
--(instancetype)initForFigure:(FigureTypes)figure
+-(instancetype)initForFigure:(FigureTypes)figure andSize:(double)size;
 {
     self = [super init];
     if(self)
@@ -39,7 +39,7 @@
                 image = [UIImage imageNamed:@"block_yellow.png"];
                 break;
         }
-        image = [self resizeImage:image withWidth:CellSize withHeight:CellSize];
+        image = [self resizeImage:image withWidth:size withHeight:size];
         UIImageView *cellImage = [[UIImageView alloc] initWithImage:image];
         [self addSubview: cellImage];
     }

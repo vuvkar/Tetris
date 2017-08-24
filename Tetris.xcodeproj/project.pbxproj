@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E41F8FBF1F4F57C900C12D99 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E41F8FBE1F4F57C900C12D99 /* DataManager.m */; };
 		E4227FC41F4E1A3000C0506D /* Dosis-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBD1F4E1A3000C0506D /* Dosis-Bold.ttf */; };
 		E4227FC51F4E1A3000C0506D /* darkCell.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBE1F4E1A3000C0506D /* darkCell.png */; };
 		E4227FC61F4E1A3000C0506D /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBF1F4E1A3000C0506D /* trophy.png */; };
@@ -41,11 +42,12 @@
 		E4D5E91E1F4CD10D00764F17 /* levelup.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E91D1F4CD10D00764F17 /* levelup.wav */; };
 		E4D5E9201F4CD21E00764F17 /* rowClear.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E91F1F4CD21E00764F17 /* rowClear.wav */; };
 		E4D5E9221F4CD24C00764F17 /* button_press.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E9211F4CD24C00764F17 /* button_press.wav */; };
-		E4D5E9251F4D72F100764F17 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D5E9241F4D72F100764F17 /* FileManager.m */; };
 		E4D5E9281F4D881D00764F17 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D5E9271F4D881D00764F17 /* InitialViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E41F8FBD1F4F57C800C12D99 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		E41F8FBE1F4F57C900C12D99 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		E4227FBD1F4E1A3000C0506D /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Bold.ttf"; sourceTree = "<group>"; };
 		E4227FBE1F4E1A3000C0506D /* darkCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkCell.png; sourceTree = "<group>"; };
 		E4227FBF1F4E1A3000C0506D /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
@@ -92,8 +94,6 @@
 		E4D5E91D1F4CD10D00764F17 /* levelup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelup.wav; sourceTree = "<group>"; };
 		E4D5E91F1F4CD21E00764F17 /* rowClear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rowClear.wav; sourceTree = "<group>"; };
 		E4D5E9211F4CD24C00764F17 /* button_press.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_press.wav; sourceTree = "<group>"; };
-		E4D5E9231F4D72F100764F17 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
-		E4D5E9241F4D72F100764F17 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		E4D5E9261F4D881D00764F17 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		E4D5E9271F4D881D00764F17 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,8 +155,8 @@
 			children = (
 				E4227FCB1F4E295E00C0506D /* ImageManager.h */,
 				E4227FCC1F4E295E00C0506D /* ImageManager.m */,
-				E4D5E9231F4D72F100764F17 /* FileManager.h */,
-				E4D5E9241F4D72F100764F17 /* FileManager.m */,
+				E41F8FBD1F4F57C800C12D99 /* DataManager.h */,
+				E41F8FBE1F4F57C900C12D99 /* DataManager.m */,
 				E453F32B1F438B1E0059120E /* MatrixPoint.h */,
 				E453F32C1F438B1E0059120E /* MatrixPoint.m */,
 			);
@@ -358,8 +358,8 @@
 				E453F33E1F449CBB0059120E /* BoardView.m in Sources */,
 				E453F3081F433FFD0059120E /* main.m in Sources */,
 				E4227FCD1F4E295E00C0506D /* ImageManager.m in Sources */,
-				E4D5E9251F4D72F100764F17 /* FileManager.m in Sources */,
 				E453F32A1F4343C50059120E /* Figure.m in Sources */,
+				E41F8FBF1F4F57C900C12D99 /* DataManager.m in Sources */,
 				E453F31F1F4340620059120E /* GameEngine.m in Sources */,
 				E453F3411F45EB060059120E /* FigureView.m in Sources */,
 				E453F3331F446A740059120E /* PlayViewController.m in Sources */,
@@ -487,6 +487,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 74U862S4Q7;
 				INFOPLIST_FILE = Tetris/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vuvkar.Tetris;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -499,6 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 74U862S4Q7;
 				INFOPLIST_FILE = Tetris/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vuvkar.Tetris;
 				PRODUCT_NAME = "$(TARGET_NAME)";

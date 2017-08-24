@@ -15,6 +15,8 @@
 
 -(void)rowsAreDeleted:(NSMutableArray <NSNumber *> *)rows;
 -(void)newFigureIsCreated:(Figure*)figure;
+-(void)levelIsChanged:(int)newLevel;
+-(void)newFigureIsGenerated:(Figure*)figure;
 
 @end
 
@@ -22,6 +24,7 @@
 
 @property (nonatomic) NSMutableArray <NSMutableArray *> *board;
 @property int score;
+@property int deletedRows;
 @property int level;
 @property double tactSpeed;
 @property Figure *currentFigure;
@@ -33,7 +36,6 @@
 @property Directions goingDirection;
 @property BOOL shouldRotate;
 @property BOOL isLastMove;
-@property double lastChanceSpeed;
 @property BOOL didSwipeDown;
 
 +(instancetype)sharedEngine;

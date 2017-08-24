@@ -36,7 +36,7 @@
 -(void)createFigure:(Figure*)figure
 {
     FigureView* figureView = [[FigureView alloc] initFromFigure:figure];
-    for (CellView *temp in figureView.cells) {
+    for (CellView *temp in figureView.subviews) {
         [self.cellSubviews addObject:temp];
     }
     CGFloat height = CellSize * [figure.matrix count];
@@ -66,20 +66,28 @@
 
 -(void)deleteRowsAtIndexes:(NSMutableArray<NSNumber *> *)indexes
 {
-    [UIView animateWithDuration:0.1 animations:^{
-        for(int i = 0; i < [indexes count]; i++)
-            for (CellView* subCellView in self.cellSubviews) {
-                if(subCellView.row == [indexes[i] intValue]){
-                    [self.cellSubviews removeObject:subCellView];
-                    [subCellView removeFromSuperview];
+#warning veryy baaaaad functiooooon
+    //NSMutableArray <CellView *> *temp;
+    for(int i = 0; i < [indexes count]; i++)
+        for(FigureView *subFigureView in self.subviews)
+            if([subFigureView isMemberOfClass:[FigureView class]]){
+                for (CellView* subCellView in subFigureView.subviews) {
+                    [UIView animateWithDuration:0.1 animations:^{
+                        if(subCellView.row == [indexes[i] intValue]){
+                            [subCellView removeFromSuperview];
+                           // [temp addObject:subCellView];
+                        }
+                        else if(subCellView.row > [indexes[i] intValue])
+                        {
+                            subCellView.frame = CGRectMake(subCellView.frame.origin.x, subCellView.frame.origin.y + CellSize, subCellView.frame.size.width, subCellView.frame.size.height);
+                            subCellView.row--;
+                        }
+                    }];
                 }
-                else if(subCellView.row > [indexes[i] intValue])
-                {
-                    subCellView.frame = CGRectMake(subCellView.frame.origin.x, subCellView.frame.origin.y + CellSize, subCellView.frame.size.width, subCellView.frame.size.height);
-                    subCellView.row--;
-                }
-            }
-    }];
+    //for (CellView *tempView in temp) {
+      //  [self.cellSubviews removeObject:tempView];
+    }
+    
 }
 
 -(void)rotate:(Figure *)figure{

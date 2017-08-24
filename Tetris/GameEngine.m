@@ -19,7 +19,6 @@ static GameEngine *sharedEngine = nil;
         sharedEngine  = [[GameEngine alloc] init];
         sharedEngine.board = [[NSMutableArray alloc] init];
         sharedEngine.tactSpeed = InitalTactSpeed;
-        sharedEngine.lastChanceSpeed = 0.3;
         for(int i = 0; i < BoardRowSize; i++)
         {
             NSMutableArray *temp = [[NSMutableArray alloc] init];
@@ -87,7 +86,7 @@ static GameEngine *sharedEngine = nil;
                 }
                 else{
                     self.isLastMove = YES;
-                    self.tactSpeed = 0.2;
+                    self.tactSpeed = TimeForLastMove;
                     [self.timer invalidate];
                     [self startTact];
                     break;
@@ -96,7 +95,7 @@ static GameEngine *sharedEngine = nil;
         }
         if(flag){
             self.isLastMove = NO;
-            self.tactSpeed = InitalTactSpeed;
+            self.tactSpeed = InitalTactSpeed + self.level * Speeding;
             [self.timer invalidate];
             [self startTact];
         }
@@ -115,6 +114,7 @@ static GameEngine *sharedEngine = nil;
 -(void)generateNewFigure
 {
     Figure *newFigure = [[Figure alloc] initWithRandomType];
+    [self.delegate newFigureIsGenerated:newFigure];
     self.generatedFigure = newFigure;
 }
 
@@ -134,6 +134,16 @@ static GameEngine *sharedEngine = nil;
         }
     if([rows count] > 0)
     {
+        self.deletedRows += (int)[rows count];
+        if(self.deletedRows >= RowsNeedToDeleteToChangeLevel)
+        {
+            self.deletedRows -= RowsNeedToDeleteToChangeLevel;
+            self.tactSpeed += Speeding;
+            self.level++;
+            [self.delegate levelIsChanged:self.level];
+            [self.timer invalidate];
+            [self startTact];
+        }
         [self.delegate rowsAreDeleted:rows];
     }
 }
