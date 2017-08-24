@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4227FC41F4E1A3000C0506D /* Dosis-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBD1F4E1A3000C0506D /* Dosis-Bold.ttf */; };
+		E4227FC51F4E1A3000C0506D /* darkCell.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBE1F4E1A3000C0506D /* darkCell.png */; };
+		E4227FC61F4E1A3000C0506D /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBF1F4E1A3000C0506D /* trophy.png */; };
+		E4227FC71F4E1A3000C0506D /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FC01F4E1A3000C0506D /* coin.png */; };
+		E4227FC81F4E1A3000C0506D /* normalCell.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FC11F4E1A3000C0506D /* normalCell.png */; };
+		E4227FC91F4E1A3000C0506D /* topBoardBadge.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FC21F4E1A3000C0506D /* topBoardBadge.png */; };
+		E4227FCA1F4E1A3000C0506D /* topBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FC31F4E1A3000C0506D /* topBoard.png */; };
+		E4227FCD1F4E295E00C0506D /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4227FCC1F4E295E00C0506D /* ImageManager.m */; };
 		E453F3081F433FFD0059120E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E453F3071F433FFD0059120E /* main.m */; };
 		E453F30B1F433FFD0059120E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E453F30A1F433FFD0059120E /* AppDelegate.m */; };
 		E453F3111F433FFD0059120E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E453F30F1F433FFD0059120E /* Main.storyboard */; };
@@ -34,9 +42,19 @@
 		E4D5E9201F4CD21E00764F17 /* rowClear.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E91F1F4CD21E00764F17 /* rowClear.wav */; };
 		E4D5E9221F4CD24C00764F17 /* button_press.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E9211F4CD24C00764F17 /* button_press.wav */; };
 		E4D5E9251F4D72F100764F17 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D5E9241F4D72F100764F17 /* FileManager.m */; };
+		E4D5E9281F4D881D00764F17 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D5E9271F4D881D00764F17 /* InitialViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E4227FBD1F4E1A3000C0506D /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Bold.ttf"; sourceTree = "<group>"; };
+		E4227FBE1F4E1A3000C0506D /* darkCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkCell.png; sourceTree = "<group>"; };
+		E4227FBF1F4E1A3000C0506D /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
+		E4227FC01F4E1A3000C0506D /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
+		E4227FC11F4E1A3000C0506D /* normalCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalCell.png; sourceTree = "<group>"; };
+		E4227FC21F4E1A3000C0506D /* topBoardBadge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topBoardBadge.png; sourceTree = "<group>"; };
+		E4227FC31F4E1A3000C0506D /* topBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topBoard.png; sourceTree = "<group>"; };
+		E4227FCB1F4E295E00C0506D /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
+		E4227FCC1F4E295E00C0506D /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		E453F3031F433FFD0059120E /* Tetris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tetris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E453F3071F433FFD0059120E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E453F3091F433FFD0059120E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -76,6 +94,8 @@
 		E4D5E9211F4CD24C00764F17 /* button_press.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_press.wav; sourceTree = "<group>"; };
 		E4D5E9231F4D72F100764F17 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		E4D5E9241F4D72F100764F17 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		E4D5E9261F4D881D00764F17 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		E4D5E9271F4D881D00764F17 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +153,8 @@
 		E453F3211F4340960059120E /* Additional Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4227FCB1F4E295E00C0506D /* ImageManager.h */,
+				E4227FCC1F4E295E00C0506D /* ImageManager.m */,
 				E4D5E9231F4D72F100764F17 /* FileManager.h */,
 				E4D5E9241F4D72F100764F17 /* FileManager.m */,
 				E453F32B1F438B1E0059120E /* MatrixPoint.h */,
@@ -153,6 +175,13 @@
 		E453F3241F4340FB0059120E /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
+				E4227FBD1F4E1A3000C0506D /* Dosis-Bold.ttf */,
+				E4227FBE1F4E1A3000C0506D /* darkCell.png */,
+				E4227FBF1F4E1A3000C0506D /* trophy.png */,
+				E4227FC01F4E1A3000C0506D /* coin.png */,
+				E4227FC11F4E1A3000C0506D /* normalCell.png */,
+				E4227FC21F4E1A3000C0506D /* topBoardBadge.png */,
+				E4227FC31F4E1A3000C0506D /* topBoard.png */,
 				E4D5E9041F4C957A00764F17 /* bg.png */,
 				E4D5E9051F4C957A00764F17 /* block_brown.png */,
 				E4D5E9061F4C957A00764F17 /* block_green.png */,
@@ -190,6 +219,8 @@
 		E453F3271F4341820059120E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E4D5E9261F4D881D00764F17 /* InitialViewController.h */,
+				E4D5E9271F4D881D00764F17 /* InitialViewController.m */,
 				E453F3311F446A740059120E /* PlayViewController.h */,
 				E453F3321F446A740059120E /* PlayViewController.m */,
 			);
@@ -289,12 +320,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4227FC41F4E1A3000C0506D /* Dosis-Bold.ttf in Resources */,
+				E4227FC71F4E1A3000C0506D /* coin.png in Resources */,
 				E4D5E9151F4C957B00764F17 /* top_bar.png in Resources */,
 				E4D5E9171F4CCF3800764F17 /* chocolate_grows.wav in Resources */,
 				E4D5E90D1F4C957A00764F17 /* bg.png in Resources */,
+				E4227FC61F4E1A3000C0506D /* trophy.png in Resources */,
 				E4D5E9121F4C957B00764F17 /* block_yellow.png in Resources */,
 				E4D5E9101F4C957B00764F17 /* block_orange.png in Resources */,
 				E4D5E90F1F4C957B00764F17 /* block_green.png in Resources */,
+				E4227FCA1F4E1A3000C0506D /* topBoard.png in Resources */,
 				E453F3161F433FFD0059120E /* LaunchScreen.storyboard in Resources */,
 				E4D5E9201F4CD21E00764F17 /* rowClear.wav in Resources */,
 				E4D5E90E1F4C957B00764F17 /* block_brown.png in Resources */,
@@ -304,6 +339,9 @@
 				E4D5E9131F4C957B00764F17 /* gameplay_preview.png in Resources */,
 				E453F3131F433FFD0059120E /* Assets.xcassets in Resources */,
 				E4D5E9221F4CD24C00764F17 /* button_press.wav in Resources */,
+				E4227FC51F4E1A3000C0506D /* darkCell.png in Resources */,
+				E4227FC91F4E1A3000C0506D /* topBoardBadge.png in Resources */,
+				E4227FC81F4E1A3000C0506D /* normalCell.png in Resources */,
 				E4D5E91A1F4CD00300764F17 /* level_failed1.wav in Resources */,
 				E453F3111F433FFD0059120E /* Main.storyboard in Resources */,
 			);
@@ -319,11 +357,13 @@
 				E453F30B1F433FFD0059120E /* AppDelegate.m in Sources */,
 				E453F33E1F449CBB0059120E /* BoardView.m in Sources */,
 				E453F3081F433FFD0059120E /* main.m in Sources */,
+				E4227FCD1F4E295E00C0506D /* ImageManager.m in Sources */,
 				E4D5E9251F4D72F100764F17 /* FileManager.m in Sources */,
 				E453F32A1F4343C50059120E /* Figure.m in Sources */,
 				E453F31F1F4340620059120E /* GameEngine.m in Sources */,
 				E453F3411F45EB060059120E /* FigureView.m in Sources */,
 				E453F3331F446A740059120E /* PlayViewController.m in Sources */,
+				E4D5E9281F4D881D00764F17 /* InitialViewController.m in Sources */,
 				E453F32D1F438B1E0059120E /* MatrixPoint.m in Sources */,
 				E453F33B1F4499FA0059120E /* CellView.m in Sources */,
 			);

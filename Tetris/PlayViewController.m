@@ -21,6 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [GameEngine sharedEngine].delegate = self;
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.board
+                                                      attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:CellSize * BoardColumnsSize]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.board
+                                                      attribute:NSLayoutAttributeHeight
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:nil
+                                                      attribute: NSLayoutAttributeNotAnAttribute
+                                                     multiplier:1
+                                                       constant:CellSize * BoardRowSize]];
 }
 - (IBAction)rotate:(id)sender {
     [GameEngine sharedEngine].shouldRotate = YES;
@@ -60,10 +69,10 @@
 
 - (void)moveFigureDown:(Figure *)figure andHowManyRows:(int)rows
 {
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"chocolate_grows" ofType:@"wav"];
-    SystemSoundID soundID;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
-    AudioServicesPlaySystemSound(soundID);
+//    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"chocolate_grows" ofType:@"wav"];
+//    SystemSoundID soundID;
+//    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
+//    AudioServicesPlaySystemSound(soundID);
     [self.board moveFigureDown:figure andHowManyRows:rows];
 }
 

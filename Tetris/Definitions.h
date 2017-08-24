@@ -13,7 +13,11 @@
 #define BoardColumnsSize 10
 #define InitalTactSpeed 0.6
 #define HowManyFigures 7
-#define CellSize 290 / BoardColumnsSize
+#define CellSize 30
+#define Green [UIColor colorWithRed:0.85 green:0.92 blue:0.85 alpha:1.0]
+#define LightGreen [UIColor colorWithRed:0.95 green:0.97 blue:0.93 alpha:1.0]
+
+
 
 
 typedef NS_ENUM(NSInteger, FigureTypes) {

@@ -10,6 +10,29 @@
 
 @implementation BoardView
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self)
+    {
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, CellSize * BoardColumnsSize, CellSize * BoardRowSize);
+        self.backgroundColor = LightGreen;
+        self.layer.cornerRadius = 5;
+        UIImage *cellImage = [UIImage imageNamed:@"normalCell.png"];
+        [ImageManager resizeImage:cellImage withWidth:CellSize withHeight:CellSize];
+        
+        for(int i = 0; i < BoardRowSize; i++)
+            for(int j = 0; j < BoardColumnsSize; j++)
+            {
+                UIImageView *cellImageView = [[UIImageView alloc] initWithImage:cellImage];
+                cellImageView.layer.borderWidth = 0;
+                cellImageView.frame = CGRectMake(CellSize * j, CellSize * i, CellSize, CellSize);
+                [self addSubview:cellImageView];
+            }
+    }
+    return self;
+}
+
 -(void)createFigure:(Figure*)figure
 {
     FigureView* figureView = [[FigureView alloc] initFromFigure:figure];
@@ -44,7 +67,7 @@
         for(int i = 0; i < [indexes count]; i++)
             for (FigureView* subFigureView in [self subviews]) {
                 for (CellView* subCellView in [subFigureView subviews]) {
-                    if(subCellView.row == [indexes[i] intValue]){
+                    if([subCellView isKindOfClass:[CellView class]] && subCellView.row == [indexes[i] intValue]){
                         [subFigureView.cells removeObject:subCellView];
                         [subCellView removeFromSuperview];
                     }

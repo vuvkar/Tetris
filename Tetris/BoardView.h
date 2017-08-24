@@ -11,6 +11,7 @@
 #import "Figure.h"
 #import "CellView.h"
 #import "FigureView.h"
+#import "ImageManager.h"
 
 @interface BoardView : UIView
 

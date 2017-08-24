@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lpl-36-ZMC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lpl-36-ZMC">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,11 +8,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Dosis-Bold.ttf">
+            <string>Dosis-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Initial View Controller-->
         <scene sceneID="aKU-2b-Fzg">
             <objects>
-                <viewController id="vO3-FI-Nl6" sceneMemberID="viewController">
+                <viewController id="vO3-FI-Nl6" customClass="InitialViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qIX-Qm-N0z"/>
                         <viewControllerLayoutGuide type="bottom" id="Egq-uU-9le"/>
@@ -21,46 +26,94 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEN-yR-ZPl">
-                                <rect key="frame" x="137" y="186" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEN-yR-ZPl">
+                                <rect key="frame" x="139" y="179.5" width="42" height="43"/>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="24"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.5018065572" green="0.63599425549999999" blue="0.60788285730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="lmp-5d-h7v"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTC-BU-fpV">
-                                <rect key="frame" x="116" y="269" width="88" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Instructions"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTC-BU-fpV">
+                                <rect key="frame" x="101" y="263" width="118" height="43"/>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="24"/>
+                                <state key="normal" title="Instructions">
+                                    <color key="titleColor" red="0.5018065572" green="0.63599425549999999" blue="0.60788285730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="CCO-N5-Vg2" kind="show" id="UPi-jG-6hO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZQ-1I-D1g">
-                                <rect key="frame" x="115" y="352" width="90" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh3-VM-3se">
+                                <rect key="frame" x="72" y="505" width="176" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="176" id="Mch-LE-mj3"/>
+                                    <constraint firstAttribute="width" constant="176" id="PgX-Q7-Rin"/>
+                                    <constraint firstAttribute="height" constant="43" id="T3N-Yg-2QB"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="wUQ-Ph-T99"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="24"/>
+                                <state key="normal" title="Change username">
+                                    <color key="titleColor" red="0.50180655717849731" green="0.63599425554275513" blue="0.60788285732269287" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeUsername:" destination="vO3-FI-Nl6" eventType="touchUpInside" id="1VP-9I-gma"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QSk-OI-Sg6">
+                                <rect key="frame" x="-132" y="397" width="240" height="225"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Hall Of Fame"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFY-Cf-JTm">
+                                        <rect key="frame" x="97" y="161" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" red="0.50180655717849731" green="0.63599425554275513" blue="0.60788285732269287" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closePopup:" destination="vO3-FI-Nl6" eventType="touchUpInside" id="t6I-Zc-u5R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94021773338317871" green="0.97026866674423218" blue="0.91741341352462769" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znv-OI-W5b">
+                                <rect key="frame" x="92" y="40" width="137" height="42"/>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="33"/>
+                                <color key="textColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZQ-1I-D1g">
+                                <rect key="frame" x="99" y="346" width="122" height="43"/>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="24"/>
+                                <state key="normal" title="Hall Of Fame">
+                                    <color key="titleColor" red="0.5018065572" green="0.63599425549999999" blue="0.60788285730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="rh9-hT-U9b" kind="show" id="ahX-Qp-o9B"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znv-OI-W5b">
-                                <rect key="frame" x="141" y="92" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh3-VM-3se">
-                                <rect key="frame" x="172" y="518" width="132" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Change username"/>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.85490196078431369" green="0.91764705882352937" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GZQ-1I-D1g" firstAttribute="centerX" secondItem="Dz2-Fm-bpI" secondAttribute="centerX" id="6G9-R3-7WM"/>
+                            <constraint firstItem="Egq-uU-9le" firstAttribute="top" secondItem="dh3-VM-3se" secondAttribute="bottom" constant="20" id="8Md-ZB-r2l"/>
+                            <constraint firstItem="OTC-BU-fpV" firstAttribute="centerX" secondItem="Dz2-Fm-bpI" secondAttribute="centerX" id="Gvn-eB-YS9"/>
+                            <constraint firstItem="OTC-BU-fpV" firstAttribute="centerY" secondItem="Dz2-Fm-bpI" secondAttribute="centerY" id="IBw-VF-s2t"/>
+                            <constraint firstItem="Znv-OI-W5b" firstAttribute="top" secondItem="qIX-Qm-N0z" secondAttribute="bottom" constant="20" id="JRb-3Y-7Ah"/>
+                            <constraint firstItem="Znv-OI-W5b" firstAttribute="centerX" secondItem="Dz2-Fm-bpI" secondAttribute="centerX" id="Lls-EV-4rx"/>
+                            <constraint firstItem="GZQ-1I-D1g" firstAttribute="top" secondItem="OTC-BU-fpV" secondAttribute="bottom" constant="40" id="OpN-4J-bLW"/>
+                            <constraint firstItem="dh3-VM-3se" firstAttribute="centerX" secondItem="Dz2-Fm-bpI" secondAttribute="centerX" id="acF-Je-3Nd"/>
+                            <constraint firstItem="OTC-BU-fpV" firstAttribute="top" secondItem="vEN-yR-ZPl" secondAttribute="bottom" constant="40" id="lxz-yE-Erz"/>
+                            <constraint firstItem="vEN-yR-ZPl" firstAttribute="centerX" secondItem="Dz2-Fm-bpI" secondAttribute="centerX" id="ugl-hg-pZ3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HH1-sC-Nar"/>
+                    <connections>
+                        <outlet property="popUpView" destination="QSk-OI-Sg6" id="bf6-Bo-7YE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LH-c2-I9D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,9 +147,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOM-y0-SUf" customClass="BoardView">
-                                <rect key="frame" x="13" y="109" width="290" height="404"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOM-y0-SUf" customClass="BoardView">
+                                <rect key="frame" x="16" y="124" width="291" height="320"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Cbz-wK-j5v" appends="YES" id="3lG-Zu-oYp"/>
@@ -110,17 +162,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="pause_button.png"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="top_bar.png" translatesAutoresizingMaskIntoConstraints="NO" id="p8j-b9-DfG">
-                                <rect key="frame" x="0.0" y="20" width="320" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-hj-TuN">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.85490196080000003" green="0.91764705879999997" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="BOM-y0-SUf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9UH-xc-k8d"/>
+                            <constraint firstItem="BOM-y0-SUf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YN5-Vi-qeC"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="LeftSwipeGestureRecognizer" destination="xXN-Kx-Zkh" id="7Sd-im-kKN"/>
@@ -190,8 +238,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg.png" width="1080" height="1920"/>
         <image name="pause_button.png" width="116" height="117"/>
-        <image name="top_bar.png" width="1058" height="404"/>
     </resources>
 </document>

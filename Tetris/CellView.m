@@ -49,16 +49,16 @@
 -(UIImage*)resizeImage:(UIImage *)image withWidth:(double)width withHeight:(double)height
 {
     CGSize newSize = CGSizeMake(width, height);
-    float widthRatio = newSize.width/image.size.width;
-    float heightRatio = newSize.height/image.size.height;
+    float widthRatio = newSize.width / image.size.width;
+    float heightRatio = newSize.height / image.size.height;
     
     if(widthRatio > heightRatio)
     {
-        newSize=CGSizeMake(image.size.width*heightRatio,image.size.height*heightRatio);
+        newSize=CGSizeMake(image.size.width * heightRatio, image.size.height * heightRatio);
     }
     else
     {
-        newSize=CGSizeMake(image.size.width*widthRatio,image.size.height*widthRatio);
+        newSize=CGSizeMake(image.size.width * widthRatio, image.size.height * widthRatio);
     }
     
     
