@@ -9,7 +9,7 @@
 #import "PlayViewController.h"
 
 
-@interface PlayViewController () <GameEngineDelegate, FigureDelegate>
+@interface PlayViewController () <GameEngineDelegate, FigureDelegate, AVAudioPlayerDelegate>
 @property (weak, nonatomic) IBOutlet BoardView *board;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *RightSwipeGestureRecognizer;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *LeftSwipeGestureRecognizer;
@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highestScoreLabel;
 @property (weak, nonatomic) IBOutlet UIProgressView *levelPassProgressBar;
+@property (nonatomic, strong) AVAudioPlayer *backgroundPlayer;
+@property (nonatomic, strong) AVAudioPlayer *effectsPlayer;
+@property (weak, nonatomic) IBOutlet UIButton *audioButton;
+@property BOOL allowAudio;
 
 @end
 
@@ -28,6 +32,7 @@
     [super viewDidLoad];
     [self.PausePopUp removeFromSuperview];
     [GameEngine sharedEngine].delegate = self;
+    self.allowAudio = YES;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.board
                                                           attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:CellSize * BoardColumnsSize]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.board
@@ -37,23 +42,73 @@
                                                           attribute: NSLayoutAttributeNotAnAttribute
                                                          multiplier:1
                                                            constant:CellSize * BoardRowSize]];
+    NSString *background = [[NSBundle mainBundle] pathForResource:@"backgroundMusic" ofType:@"wav"];
+    NSError *soundError = nil;
+    self.backgroundPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:background]
+                                                                   error:&soundError];
+    [self.backgroundPlayer setDelegate:self];
+    self.backgroundPlayer.numberOfLoops = -1;
+    [self.backgroundPlayer play];
+    
 }
+
+
 - (IBAction)rotate:(id)sender {
     [GameEngine sharedEngine].shouldRotate = YES;
 }
+
+
 - (IBAction)resumeAction:(id)sender {
     [self.PausePopUp removeAnimate];
     [[GameEngine sharedEngine] startTact];
 }
 
 - (IBAction)restartAction:(id)sender {
+    [[GameEngine sharedEngine] endGame];
+    for (FigureView *subview in [self.board subviews]) {
+        if([subview isMemberOfClass:[FigureView class]])
+            [subview removeFromSuperview];
+    }
+    [self.comingFigureView.subviews[0] removeFromSuperview];
+    [GameEngine sharedEngine].delegate = self;
+    [self.PausePopUp removeAnimate];
+#warning  addHighestScore
+    self.levelPassProgressBar.progress = 0.0;
+    self.scoreLabel.text = @"0";
 }
+
 - (IBAction)mainMenuAction:(id)sender {
+    [[GameEngine sharedEngine] endGame];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)audioControlAction:(id)sender {
+    if(self.allowAudio)
+    {
+        self.allowAudio = NO;
+        [self.backgroundPlayer stop];
+        self.audioButton.titleLabel.text = @"Unmute";
+    }
+    else
+    {
+        self.allowAudio = YES;
+        [self.backgroundPlayer play];
+        self.audioButton.titleLabel.text = @"Mute";
+    }
+    
 }
 
 -(void)levelIsChanged:(int)newLevel
 {
     self.levelLabel.text = [[NSNumber numberWithInt:newLevel] stringValue];
+    if(self.allowAudio)
+    {
+    NSString *effect = [[NSBundle mainBundle] pathForResource:@"levelup" ofType:@"wav"];
+    NSError *soundError = nil;
+    self.effectsPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:effect]
+                                                                error:&soundError];
+    [self.effectsPlayer setDelegate:self];
+    [self.effectsPlayer play];
+    }
 }
 
 -(void)moveFigure:(Figure *)figure
@@ -109,15 +164,28 @@
 
 - (void)moveFigureDown:(Figure *)figure andHowManyRows:(int)rows
 {
-    //    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"chocolate_grows" ofType:@"wav"];
-    //    SystemSoundID soundID;
-    //    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
-    //    AudioServicesPlaySystemSound(soundID);
+    if(self.allowAudio)
+    {
+    NSString *effect = [[NSBundle mainBundle] pathForResource:@"move" ofType:@"wav"];
+    NSError *soundError = nil;
+    self.effectsPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:effect]
+                                                                   error:&soundError];
+    [self.effectsPlayer setDelegate:self];
+    [self.effectsPlayer play];
+    }
     [self.board moveFigureDown:figure andHowManyRows:rows];
 }
 
 - (void)rowsAreDeleted:(NSMutableArray <NSNumber *> *)rows
 {
+    if(self.allowAudio)
+    {
+    NSString *effect = [[NSBundle mainBundle] pathForResource:@"rowClear" ofType:@"wav"];
+    self.effectsPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:effect]
+                                                                error:nil];
+    [self.effectsPlayer setDelegate:self];
+    [self.effectsPlayer play];
+    }
     [self.board deleteRowsAtIndexes:rows];
     self.levelPassProgressBar.progress = [GameEngine sharedEngine].deletedRows / RowsNeedToDeleteToChangeLevel;
     self.scoreLabel.text = [[NSNumber numberWithInt:[GameEngine sharedEngine].score] stringValue];

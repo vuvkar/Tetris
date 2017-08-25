@@ -200,7 +200,13 @@
                                     <constraint firstAttribute="width" constant="50" id="FdY-vz-7OQ"/>
                                     <constraint firstAttribute="height" constant="50" id="ncD-NX-xsQ"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                <state key="normal" title="Mute">
+                                    <color key="titleColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="audioControlAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KPO-h1-XEl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ok-ps-N9m">
                                 <rect key="frame" x="135" y="503" width="50" height="50"/>
@@ -220,7 +226,8 @@
                                 </constraints>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-tw-TJw">
-                                <rect key="frame" x="110" y="556" width="107" height="2"/>
+                                <rect key="frame" x="110" y="556" width="100" height="2"/>
+                                <color key="backgroundColor" red="0.94022780660000005" green="0.97050744300000003" blue="0.92528229949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="progressTintColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" red="0.94022780660000005" green="0.97050744300000003" blue="0.92528229949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
@@ -332,6 +339,7 @@
                         <outlet property="LeftSwipeGestureRecognizer" destination="xXN-Kx-Zkh" id="7Sd-im-kKN"/>
                         <outlet property="PausePopUp" destination="jch-gj-YDM" id="Uqi-k9-HDk"/>
                         <outlet property="RightSwipeGestureRecognizer" destination="Cbz-wK-j5v" id="5pv-KW-kuh"/>
+                        <outlet property="audioButton" destination="rNL-6Y-2ke" id="qy7-wT-icx"/>
                         <outlet property="board" destination="BOM-y0-SUf" id="EKB-tc-v6Z"/>
                         <outlet property="comingFigureView" destination="IyW-Yh-zWp" id="sVw-bq-OBG"/>
                         <outlet property="highestScoreLabel" destination="irQ-9Y-zpT" id="aJw-jO-4CW"/>

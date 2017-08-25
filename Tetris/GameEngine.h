@@ -48,6 +48,7 @@
 -(void)startFalling;
 -(BOOL)isPossibleToRotate;
 -(void)forceDown;
+-(void)endGame;
 
 
 @end

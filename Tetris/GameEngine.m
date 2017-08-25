@@ -102,6 +102,11 @@ static GameEngine *sharedEngine = nil;
     }];
 }
 
+-(void)endGame
+{
+    sharedEngine = nil;
+}
+
 -(void)moveCurrentFigure
 {
     for (MatrixPoint *temp in self.currentFigure.pointsOnBoard) {
@@ -143,7 +148,8 @@ static GameEngine *sharedEngine = nil;
         if(self.deletedRows >= RowsNeedToDeleteToChangeLevel)
         {
             self.deletedRows -= RowsNeedToDeleteToChangeLevel;
-            self.tactSpeed += Speeding;
+            if(self.tactSpeed > 0.1)
+                self.tactSpeed += Speeding;
             self.level++;
             [self.delegate levelIsChanged:self.level];
             [self.timer invalidate];
