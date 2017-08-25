@@ -12,6 +12,7 @@
 #import "CellView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "PopUpView.h"
+#import "DataManager.h"
 
 
 @interface PlayViewController : UIViewController

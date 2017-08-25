@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,7 +79,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QSk-OI-Sg6" customClass="PopUpView">
-                                <rect key="frame" x="40" y="163" width="240" height="225"/>
+                                <rect key="frame" x="51" y="80" width="240" height="225"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFY-Cf-JTm">
@@ -92,6 +91,7 @@
                                         </state>
                                         <connections>
                                             <action selector="closePopup:" destination="vO3-FI-Nl6" eventType="touchUpInside" id="t6I-Zc-u5R"/>
+                                            <action selector="saveUsername:" destination="vO3-FI-Nl6" eventType="touchUpInside" id="wQr-jo-EPc"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oOU-9h-qdp">
@@ -101,7 +101,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter tour name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61m-CU-pfj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61m-CU-pfj">
                                         <rect key="frame" x="36" y="55" width="169" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
@@ -128,7 +128,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="HH1-sC-Nar"/>
                     <connections>
+                        <outlet property="enterUsernameTextField" destination="oOU-9h-qdp" id="AO5-Cf-cl4"/>
                         <outlet property="popUpView" destination="QSk-OI-Sg6" id="bf6-Bo-7YE"/>
+                        <outlet property="usernameLabel" destination="Znv-OI-W5b" id="6Dy-db-1Zt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LH-c2-I9D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -164,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOM-y0-SUf" customClass="BoardView">
-                                <rect key="frame" x="16" y="124" width="250" height="300"/>
+                                <rect key="frame" x="16" y="80" width="250" height="408"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Cbz-wK-j5v" appends="YES" id="3lG-Zu-oYp"/>
@@ -177,11 +179,7 @@
                                 <rect key="frame" x="239" y="503" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9Bg-qL-ciK"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="HCK-7x-dEL"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="a7n-pz-r11"/>
                                     <constraint firstAttribute="width" constant="50" id="jeY-dQ-poU"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="lMN-fV-REX"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="zXr-nS-nBf"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="pause_button.png"/>
                                 <connections>
@@ -195,9 +193,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNL-6Y-2ke">
-                                <rect key="frame" x="31" y="503" width="50" height="50"/>
+                                <rect key="frame" x="31" y="503" width="70" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="FdY-vz-7OQ"/>
+                                    <constraint firstAttribute="width" constant="70" id="MYi-7G-3NJ"/>
                                     <constraint firstAttribute="height" constant="50" id="ncD-NX-xsQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
@@ -225,9 +223,12 @@
                                     <constraint firstAttribute="width" constant="100" id="r8A-z9-F8O"/>
                                 </constraints>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-tw-TJw">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-tw-TJw">
                                 <rect key="frame" x="110" y="556" width="100" height="2"/>
                                 <color key="backgroundColor" red="0.94022780660000005" green="0.97050744300000003" blue="0.92528229949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="8vr-lx-goK"/>
+                                </constraints>
                                 <color key="progressTintColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" red="0.94022780660000005" green="0.97050744300000003" blue="0.92528229949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
@@ -285,16 +286,6 @@
                                     <constraint firstAttribute="height" constant="50" id="gz3-1R-DvC"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4S-DW-Taw">
-                                <rect key="frame" x="74" y="49" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="I5C-W9-43N"/>
-                                    <constraint firstAttribute="width" constant="35" id="YbZ-7S-g4J"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="17"/>
-                                <color key="textColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irQ-9Y-zpT">
                                 <rect key="frame" x="211" y="49" width="35" height="35"/>
                                 <constraints>
@@ -305,6 +296,73 @@
                                 <color key="textColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4S-DW-Taw">
+                                <rect key="frame" x="74" y="49" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="I5C-W9-43N"/>
+                                    <constraint firstAttribute="width" constant="35" id="YbZ-7S-g4J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="17"/>
+                                <color key="textColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QOz-cL-vD4" customClass="PopUpView">
+                                <rect key="frame" x="-9" y="538" width="240" height="225"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOC-GY-MTP">
+                                        <rect key="frame" x="35" y="22" width="170" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                        <color key="textColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your score is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unr-gQ-nVO">
+                                        <rect key="frame" x="35" y="75" width="170" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                        <color key="textColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHJ-OG-9QV">
+                                        <rect key="frame" x="103" y="95" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="17"/>
+                                        <color key="textColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcQ-ZU-Vlz">
+                                        <rect key="frame" x="63" y="138" width="114" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                        <color key="textColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-JN-K5k">
+                                        <rect key="frame" x="35" y="187" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exitWithSaving:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5oL-0Y-84G"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghh-oB-Q6G">
+                                        <rect key="frame" x="159" y="187" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                        <state key="normal" title="No">
+                                            <color key="titleColor" red="0.66001725200000005" green="0.75397282840000002" blue="0.71759384869999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exitWithoutSaving:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o5r-xu-gHR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94022780660000005" green="0.97050744300000003" blue="0.92528229949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.85490196080000003" green="0.91764705879999997" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -324,6 +382,7 @@
                             <constraint firstItem="BOM-y0-SUf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TCS-b0-8LZ"/>
                             <constraint firstItem="e94-UM-nwD" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Tur-qy-T3S"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8ok-ps-N9m" secondAttribute="bottom" constant="15" id="Uf2-OE-5FK"/>
+                            <constraint firstItem="BOM-y0-SUf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Zvr-9B-LSe"/>
                             <constraint firstItem="GXy-PV-JXN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bFK-bu-mwF"/>
                             <constraint firstItem="rrc-0V-A4w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bYi-bB-bDe"/>
                             <constraint firstAttribute="trailing" secondItem="rrc-0V-A4w" secondAttribute="trailing" id="ebO-jS-BlL"/>
@@ -331,7 +390,6 @@
                             <constraint firstItem="rrc-0V-A4w" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="hRu-gQ-Wii"/>
                             <constraint firstItem="8ok-ps-N9m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lJM-Bc-zIG"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pMZ-tw-TJw" secondAttribute="bottom" constant="10" id="llf-dm-wBR"/>
-                            <constraint firstItem="6pd-Bq-XqJ" firstAttribute="top" secondItem="BOM-y0-SUf" secondAttribute="bottom" constant="15" id="yUE-wG-1JW"/>
                             <constraint firstItem="rNL-6Y-2ke" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="15" id="yc5-Qm-nGC"/>
                         </constraints>
                     </view>
@@ -342,10 +400,12 @@
                         <outlet property="audioButton" destination="rNL-6Y-2ke" id="qy7-wT-icx"/>
                         <outlet property="board" destination="BOM-y0-SUf" id="EKB-tc-v6Z"/>
                         <outlet property="comingFigureView" destination="IyW-Yh-zWp" id="sVw-bq-OBG"/>
+                        <outlet property="finalScore" destination="kHJ-OG-9QV" id="vqX-Fh-RPG"/>
+                        <outlet property="gameIsEndedPopUpView" destination="QOz-cL-vD4" id="A7c-HD-RiG"/>
                         <outlet property="highestScoreLabel" destination="irQ-9Y-zpT" id="aJw-jO-4CW"/>
                         <outlet property="levelLabel" destination="8ok-ps-N9m" id="mV7-bC-U4m"/>
                         <outlet property="levelPassProgressBar" destination="pMZ-tw-TJw" id="JPb-0F-KBb"/>
-                        <outlet property="scoreLabel" destination="L4S-DW-Taw" id="MT2-Jl-dcu"/>
+                        <outlet property="scoreLabel" destination="L4S-DW-Taw" id="oW5-7y-YZ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -372,10 +432,10 @@
             </objects>
             <point key="canvasLocation" x="255" y="-319.01408450704224"/>
         </scene>
-        <!--View Controller-->
+        <!--Instructions View Controller-->
         <scene sceneID="fLS-Zc-NOf">
             <objects>
-                <viewController id="CCO-N5-Vg2" sceneMemberID="viewController">
+                <viewController id="CCO-N5-Vg2" customClass="InstructionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XdU-4I-f9M"/>
                         <viewControllerLayoutGuide type="bottom" id="QqZ-iA-xc2"/>
@@ -383,17 +443,67 @@
                     <view key="view" contentMode="scaleToFill" id="VDB-FT-qtG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xF6-S4-cbk">
+                                <rect key="frame" x="16" y="498" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="G9l-iX-Ydu"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Kel-9m-w83"/>
+                                    <constraint firstAttribute="width" constant="50" id="dBs-Iv-mxR"/>
+                                    <constraint firstAttribute="height" constant="50" id="u9Q-0k-I1k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="19"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBack:" destination="CCO-N5-Vg2" eventType="touchUpInside" id="d7W-S7-gpn"/>
+                                    <action selector="goBackAction:" destination="rh9-hT-U9b" eventType="touchUpInside" id="81T-9C-HJl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="22" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crD-cd-0Zt">
+                                <rect key="frame" x="16" y="74" width="288" height="421"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="Cwa-WR-AAk"/>
+                                    <constraint firstAttribute="height" constant="421" id="Qxh-F7-nR7"/>
+                                </constraints>
+                                <string key="text">Tetris is non-winning game. the purpose is to collect as many coins as possible. In the begining of the game a figure starts coming from the top of the board. you can control it by taking it left, right, or rotating. When it reaches the bottom, or touches a brick, it sticks there, and another figure starts coming from top. When you fill a line full with bricks , it removes and gives you coins. For the first removed line 10 points is given, for each additional line 5 points more. So if let's say 3 lines were removed at the same time, the award points will be 10 + 15 + 20 = 40. The speed of the brick falling from the top is determined by the level user is playing. Level is changed each time 10 lines are removed.</string>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="17"/>
+                                <color key="textColor" red="0.52183318138122559" green="0.64400738477706909" blue="0.61570870876312256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How To Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NT5-O5-uPV">
+                                <rect key="frame" x="100" y="45" width="120" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="5u9-PU-mWD"/>
+                                    <constraint firstAttribute="height" constant="40" id="iN2-Xa-5Ow"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.85296279191970825" green="0.91829842329025269" blue="0.85469835996627808" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NT5-O5-uPV" firstAttribute="centerX" secondItem="VDB-FT-qtG" secondAttribute="centerX" id="06Q-JE-Iyx"/>
+                            <constraint firstItem="xF6-S4-cbk" firstAttribute="leading" secondItem="VDB-FT-qtG" secondAttribute="leadingMargin" id="Eic-Uk-sEX"/>
+                            <constraint firstItem="crD-cd-0Zt" firstAttribute="centerX" secondItem="VDB-FT-qtG" secondAttribute="centerX" id="HQI-J8-6Dq"/>
+                            <constraint firstItem="xF6-S4-cbk" firstAttribute="leading" secondItem="VDB-FT-qtG" secondAttribute="leadingMargin" id="QSl-9E-ykI"/>
+                            <constraint firstItem="NT5-O5-uPV" firstAttribute="top" secondItem="XdU-4I-f9M" secondAttribute="bottom" constant="25" id="dSN-ga-lIh"/>
+                            <constraint firstItem="QqZ-iA-xc2" firstAttribute="top" secondItem="xF6-S4-cbk" secondAttribute="bottom" constant="20" id="idv-uS-P3d"/>
+                            <constraint firstItem="crD-cd-0Zt" firstAttribute="centerY" secondItem="VDB-FT-qtG" secondAttribute="centerY" id="pYH-ak-4dm"/>
+                            <constraint firstItem="QqZ-iA-xc2" firstAttribute="top" secondItem="xF6-S4-cbk" secondAttribute="bottom" constant="20" id="umS-jc-dpX"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNQ-jJ-hUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300" y="369"/>
+            <point key="canvasLocation" x="300" y="368.66197183098592"/>
         </scene>
-        <!--View Controller-->
+        <!--Hall Of Fame View Controller-->
         <scene sceneID="tsj-Jb-yk8">
             <objects>
-                <viewController id="rh9-hT-U9b" sceneMemberID="viewController">
+                <viewController id="rh9-hT-U9b" customClass="HallOfFameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d9L-vc-diy"/>
                         <viewControllerLayoutGuide type="bottom" id="u8A-ge-SHk"/>
@@ -401,12 +511,249 @@
                     <view key="view" contentMode="scaleToFill" id="rKQ-7q-f9j">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Silver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUC-yc-c3b">
+                                <rect key="frame" x="16" y="269.5" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0l6-aG-v9q"/>
+                                    <constraint firstAttribute="width" constant="60" id="xNQ-KJ-XBo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Acv-yz-cBJ">
+                                <rect key="frame" x="16" y="189.5" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="D22-2K-qdG"/>
+                                    <constraint firstAttribute="height" constant="30" id="Hgf-xl-5Tj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bronze" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEo-7q-M8E">
+                                <rect key="frame" x="16" y="349.5" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="4Tb-F4-XRc"/>
+                                    <constraint firstAttribute="height" constant="30" id="evb-dY-uHb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlO-Cs-3mX">
+                                <rect key="frame" x="262" y="269.5" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9GP-dR-r1X"/>
+                                    <constraint firstAttribute="width" constant="60" id="f9x-L5-KbN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUsername" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ZP-tJ-4Pj">
+                                <rect key="frame" x="86" y="269" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="TWb-Ox-Re3"/>
+                                    <constraint firstAttribute="height" constant="30" id="gqD-Ce-Zi0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Uo-OI-pGa">
+                                <rect key="frame" x="201" y="269" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XHm-cC-Rju"/>
+                                    <constraint firstAttribute="width" constant="60" id="vgC-MP-wcK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHO-fg-LHB">
+                                <rect key="frame" x="16" y="498" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6QL-uK-4Kt"/>
+                                    <constraint firstAttribute="width" constant="50" id="eIk-5R-bFb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="19"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBackAction:" destination="rh9-hT-U9b" eventType="touchUpInside" id="uXZ-6N-MBV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZE-dY-zds">
+                                <rect key="frame" x="262" y="349.5" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6mg-u4-svh"/>
+                                    <constraint firstAttribute="width" constant="60" id="Ypq-VY-ijD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUsername" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4S-PX-bsW">
+                                <rect key="frame" x="86" y="349" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2CT-b2-vh5"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="aOe-CK-Ei0"/>
+                                    <constraint firstAttribute="width" constant="100" id="eWb-ov-tpU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ome-iQ-Dcu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0i-ox-H8b">
+                                <rect key="frame" x="201" y="349" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="DYY-ik-vdW"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ths-AM-7tK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlK-Xw-tNs">
+                                <rect key="frame" x="262" y="189.5" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="4ht-mt-RUe"/>
+                                    <constraint firstAttribute="height" constant="30" id="V31-Dn-LW7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUsername" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TiC-qd-uZX">
+                                <rect key="frame" x="86" y="189" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Vxj-di-nC3"/>
+                                    <constraint firstAttribute="width" constant="100" id="hsE-b4-yPH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjs-A7-RNJ">
+                                <rect key="frame" x="201" y="189" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="OdB-DN-JHZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="kLZ-ym-1vM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js7-fw-R06">
+                                <rect key="frame" x="262" y="449.5" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="qmw-HY-4kG"/>
+                                    <constraint firstAttribute="height" constant="30" id="tAE-2u-50e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LUsername" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dl7-ae-AqM">
+                                <rect key="frame" x="86" y="449.5" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Dk0-r4-4Z4"/>
+                                    <constraint firstAttribute="width" constant="100" id="nwL-ak-Ady"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emo-w1-xoH">
+                                <rect key="frame" x="201" y="449" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="lYC-Sj-uHf"/>
+                                    <constraint firstAttribute="height" constant="30" id="sf7-TZ-EfS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-Ya-rVy">
+                                <rect key="frame" x="16" y="449.5" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CVl-5t-PSO"/>
+                                    <constraint firstAttribute="width" constant="80" id="eDn-pf-Ut3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="21"/>
+                                <color key="textColor" red="0.52183318140000001" green="0.64400738479999997" blue="0.61570870879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.png" translatesAutoresizingMaskIntoConstraints="NO" id="2zv-0Q-sxW">
+                                <rect key="frame" x="85" y="20" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="KO3-0e-EUU"/>
+                                    <constraint firstAttribute="width" constant="150" id="MXd-Nu-O4r"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.85296279190000002" green="0.9182984233" blue="0.85469835999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7Uo-OI-pGa" firstAttribute="leading" secondItem="2ZP-tJ-4Pj" secondAttribute="trailing" constant="15" id="1tM-W1-ntQ"/>
+                            <constraint firstItem="dl7-ae-AqM" firstAttribute="top" secondItem="pEo-7q-M8E" secondAttribute="bottom" constant="70" id="7Nu-Z8-G6h"/>
+                            <constraint firstItem="qjs-A7-RNJ" firstAttribute="leading" secondItem="TiC-qd-uZX" secondAttribute="trailing" constant="15" id="7qQ-gU-6L3"/>
+                            <constraint firstItem="C0i-ox-H8b" firstAttribute="leading" secondItem="L4S-PX-bsW" secondAttribute="trailing" constant="15" id="8su-lP-FVj"/>
+                            <constraint firstItem="qHO-fg-LHB" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" id="95x-hd-ktn"/>
+                            <constraint firstItem="L4S-PX-bsW" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" constant="70" id="9Xb-BH-YBt"/>
+                            <constraint firstItem="7Uo-OI-pGa" firstAttribute="top" secondItem="qjs-A7-RNJ" secondAttribute="bottom" constant="50" id="Abf-pj-70m"/>
+                            <constraint firstItem="L4S-PX-bsW" firstAttribute="top" secondItem="2ZP-tJ-4Pj" secondAttribute="bottom" constant="50" id="BeE-rw-adj"/>
+                            <constraint firstItem="2ZP-tJ-4Pj" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" constant="70" id="BzI-sD-Z5B"/>
+                            <constraint firstItem="js7-fw-R06" firstAttribute="leading" secondItem="Emo-w1-xoH" secondAttribute="trailing" constant="1" id="CDN-vt-Gjl"/>
+                            <constraint firstItem="2ZP-tJ-4Pj" firstAttribute="top" secondItem="TiC-qd-uZX" secondAttribute="bottom" constant="50" id="EjS-qM-SFb"/>
+                            <constraint firstItem="pEo-7q-M8E" firstAttribute="top" secondItem="aUC-yc-c3b" secondAttribute="bottom" constant="50" id="Ipd-ZF-BXK"/>
+                            <constraint firstItem="0zk-Ya-rVy" firstAttribute="top" secondItem="pEo-7q-M8E" secondAttribute="bottom" constant="70" id="MMc-u9-99x"/>
+                            <constraint firstItem="dl7-ae-AqM" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" constant="70" id="NWo-Zj-5Kc"/>
+                            <constraint firstItem="RZE-dY-zds" firstAttribute="leading" secondItem="C0i-ox-H8b" secondAttribute="trailing" constant="1" id="OBY-4f-Bg0"/>
+                            <constraint firstItem="aUC-yc-c3b" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" id="ON1-CR-FHj"/>
+                            <constraint firstItem="u8A-ge-SHk" firstAttribute="top" secondItem="qHO-fg-LHB" secondAttribute="bottom" constant="20" id="ONZ-nv-wco"/>
+                            <constraint firstItem="pEo-7q-M8E" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" id="RWt-X3-od1"/>
+                            <constraint firstItem="jlO-Cs-3mX" firstAttribute="top" secondItem="mlK-Xw-tNs" secondAttribute="bottom" constant="50" id="S31-F0-arY"/>
+                            <constraint firstItem="aUC-yc-c3b" firstAttribute="top" secondItem="Acv-yz-cBJ" secondAttribute="bottom" constant="50" id="S6B-9o-efB"/>
+                            <constraint firstItem="jlO-Cs-3mX" firstAttribute="centerY" secondItem="rKQ-7q-f9j" secondAttribute="centerY" id="ToY-jz-4AH"/>
+                            <constraint firstItem="2zv-0Q-sxW" firstAttribute="centerX" secondItem="rKQ-7q-f9j" secondAttribute="centerX" id="Uaf-gA-PcQ"/>
+                            <constraint firstItem="2ZP-tJ-4Pj" firstAttribute="centerY" secondItem="rKQ-7q-f9j" secondAttribute="centerY" id="XKO-m9-Opz"/>
+                            <constraint firstItem="0zk-Ya-rVy" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" id="YD3-WC-vMs"/>
+                            <constraint firstItem="RZE-dY-zds" firstAttribute="top" secondItem="jlO-Cs-3mX" secondAttribute="bottom" constant="50" id="ZRM-j7-Qrt"/>
+                            <constraint firstItem="C0i-ox-H8b" firstAttribute="top" secondItem="7Uo-OI-pGa" secondAttribute="bottom" constant="50" id="bz2-SD-dik"/>
+                            <constraint firstItem="Acv-yz-cBJ" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" id="f3I-TC-lMy"/>
+                            <constraint firstItem="2zv-0Q-sxW" firstAttribute="top" secondItem="d9L-vc-diy" secondAttribute="bottom" id="ftM-OY-LUk"/>
+                            <constraint firstItem="Emo-w1-xoH" firstAttribute="top" secondItem="C0i-ox-H8b" secondAttribute="bottom" constant="70" id="gHy-YY-Ioz"/>
+                            <constraint firstItem="jlO-Cs-3mX" firstAttribute="leading" secondItem="7Uo-OI-pGa" secondAttribute="trailing" constant="1" id="geH-SD-OP1"/>
+                            <constraint firstItem="Emo-w1-xoH" firstAttribute="leading" secondItem="dl7-ae-AqM" secondAttribute="trailing" constant="15" id="gfP-5X-Xxm"/>
+                            <constraint firstItem="mlK-Xw-tNs" firstAttribute="leading" secondItem="qjs-A7-RNJ" secondAttribute="trailing" constant="1" id="huB-VY-UaI"/>
+                            <constraint firstItem="7Uo-OI-pGa" firstAttribute="centerY" secondItem="rKQ-7q-f9j" secondAttribute="centerY" id="iZk-1K-4mR"/>
+                            <constraint firstItem="TiC-qd-uZX" firstAttribute="leading" secondItem="rKQ-7q-f9j" secondAttribute="leadingMargin" constant="70" id="lXl-58-i1a"/>
+                            <constraint firstItem="js7-fw-R06" firstAttribute="top" secondItem="RZE-dY-zds" secondAttribute="bottom" constant="70" id="nwd-9j-F8V"/>
+                            <constraint firstItem="aUC-yc-c3b" firstAttribute="centerY" secondItem="rKQ-7q-f9j" secondAttribute="centerY" id="s2K-Vs-MTm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outletCollection property="goldAttributes" destination="TiC-qd-uZX" id="H0h-Px-pY5"/>
+                        <outletCollection property="goldAttributes" destination="qjs-A7-RNJ" id="Btc-Mi-jA1"/>
+                        <outletCollection property="goldAttributes" destination="mlK-Xw-tNs" id="AtW-qV-hA8"/>
+                        <outletCollection property="silverAttributes" destination="2ZP-tJ-4Pj" id="qd2-gs-0Ab"/>
+                        <outletCollection property="silverAttributes" destination="7Uo-OI-pGa" id="7J3-ka-ABi"/>
+                        <outletCollection property="silverAttributes" destination="jlO-Cs-3mX" id="Pkd-cq-93e"/>
+                        <outletCollection property="bronzeAttributes" destination="L4S-PX-bsW" id="sM8-Ml-QGP"/>
+                        <outletCollection property="bronzeAttributes" destination="C0i-ox-H8b" id="mtU-Wh-KRH"/>
+                        <outletCollection property="bronzeAttributes" destination="RZE-dY-zds" id="1gy-Gh-qS8"/>
+                        <outletCollection property="lastGameAttributes" destination="dl7-ae-AqM" id="J0Z-rf-jgm"/>
+                        <outletCollection property="lastGameAttributes" destination="Emo-w1-xoH" id="Wmi-kR-s0J"/>
+                        <outletCollection property="lastGameAttributes" destination="js7-fw-R06" id="re5-vW-2el"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6Z-Mw-zxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300" y="1181"/>
+            <point key="canvasLocation" x="300" y="1180.9859154929577"/>
         </scene>
     </scenes>
     <resources>

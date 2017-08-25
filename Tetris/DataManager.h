@@ -14,16 +14,16 @@
 @property NSNumber *currentGameScore;
 @property NSNumber *currentGameLevel;
 
+@property int highestScore;
 
 @property NSMutableDictionary *allData;
 
--(instancetype)sharedManaer;
++(instancetype)sharedManaer;
 
--(void)saveCurrentGame;
+-(void)saveCurrentGameWithScore:(int)score andLevel:(int)level;
 -(void)saveAllData;
 -(void)load;
-
--(int)highestScore;
-
+-(void)firstSetup;
+-(void)changeUsername:(NSString *)username;
 
 @end

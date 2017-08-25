@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Definitions.h"
 #import "PopUpView.h"
+#import "DataManager.h"
 
 @interface InitialViewController : UIViewController
 

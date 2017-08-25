@@ -48,6 +48,10 @@ static GameEngine *sharedEngine = nil;
         {
             [self startFalling];
             [self generateNewFigure];
+            if(self.isGameEnded){
+                [self.timer invalidate];
+                return;
+            }
             self.isItTimeToCreateNewFigure = NO;
         }
         if(self.currentFigure.notTheFirstStep && !self.isLastMove){
@@ -73,10 +77,6 @@ static GameEngine *sharedEngine = nil;
                 flag = NO;
                 if(self.isLastMove){
                     for (MatrixPoint *point in [self.currentFigure pointsOnBoard]) {
-                        if([self.board[point.row][point.column] isEqual:@1])
-                        {
-                            NSLog(@"%d, %d", point.row, point.column);
-                        }
                         self.board[point.row][point.column] = @1;
                         [self.board[point.row] replaceObjectAtIndex:BoardColumnsSize withObject:@([[self.board[point.row] lastObject] intValue] - 1)];
                     }
@@ -104,8 +104,10 @@ static GameEngine *sharedEngine = nil;
 
 -(void)endGame
 {
+    self.isGameEnded = YES;
     sharedEngine = nil;
 }
+
 
 -(void)moveCurrentFigure
 {
@@ -191,6 +193,13 @@ static GameEngine *sharedEngine = nil;
 {
     self.isLastMove = NO;
     self.currentFigure = self.generatedFigure;
+    for (MatrixPoint *point in self.currentFigure.pointsOnBoard) {
+        if([self.board[point.row][point.column] isEqual:@1])
+        {
+            [self.delegate gameIsEnded];
+            return;
+        }
+    }
     self.generatedFigure = nil;
     [self.delegate newFigureIsCreated:self.currentFigure];
 }

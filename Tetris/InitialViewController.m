@@ -11,6 +11,8 @@
 @interface InitialViewController ()
 
 @property (strong, nonatomic) IBOutlet PopUpView *popUpView;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *enterUsernameTextField;
 
 @end
 
@@ -24,9 +26,15 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.popUpView showInView:self.view animated:YES];
     }
-    else
+    else{
         [self.popUpView removeFromSuperview];
+        self.usernameLabel.text = [DataManager sharedManaer].currentPlayerName;
+    }
    ///  Do any additional setup after loading the view.
+}
+- (IBAction)saveUsername:(id)sender {
+    [[DataManager sharedManaer] changeUsername:self.enterUsernameTextField.text];
+    self.usernameLabel.text = self.enterUsernameTextField.text;
 }
 
 - (void)didReceiveMemoryWarning {

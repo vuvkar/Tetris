@@ -18,6 +18,7 @@
 -(void)levelIsChanged:(int)newLevel;
 -(void)newFigureIsGenerated:(Figure*)figure;
 -(void)pauseGame;
+-(void)gameIsEnded;
 
 @end
 
@@ -38,6 +39,7 @@
 @property BOOL shouldRotate;
 @property BOOL isLastMove;
 @property BOOL didSwipeDown;
+@property BOOL isGameEnded;
 
 +(instancetype)sharedEngine;
 
