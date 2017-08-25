@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h> //this is only for Popup view
 #import "Definitions.h"
+#import "PopUpView.h"
 
 @interface InitialViewController : UIViewController
 

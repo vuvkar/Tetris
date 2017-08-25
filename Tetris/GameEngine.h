@@ -17,6 +17,7 @@
 -(void)newFigureIsCreated:(Figure*)figure;
 -(void)levelIsChanged:(int)newLevel;
 -(void)newFigureIsGenerated:(Figure*)figure;
+-(void)pauseGame;
 
 @end
 
@@ -47,5 +48,6 @@
 -(void)startFalling;
 -(BOOL)isPossibleToRotate;
 -(void)forceDown;
+
 
 @end

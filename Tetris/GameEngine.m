@@ -121,8 +121,11 @@ static GameEngine *sharedEngine = nil;
 -(void)deleteRows
 {
     NSMutableArray <NSNumber *> *rows = [NSMutableArray arrayWithArray:@[]];
+    int score = 0;
+    int counter = 0;
     for(int i = 0; i < BoardRowSize; i++)
         if([[self.board[i] lastObject] intValue] == 0){
+            score += NormalScore + counter * AdditionalScoreForEachLine;
             [rows addObject:[NSNumber numberWithInt:i]];
             [self.board removeObjectAtIndex:i];
             NSMutableArray *temp = [[NSMutableArray alloc] init];
@@ -130,11 +133,13 @@ static GameEngine *sharedEngine = nil;
                 [temp addObject:[NSNull null]];
             [temp addObject:[NSNumber numberWithInt:BoardColumnsSize]];
             [sharedEngine.board addObject:temp];
+            counter++;
             i--;
         }
     if([rows count] > 0)
     {
         self.deletedRows += (int)[rows count];
+        self.score += score;
         if(self.deletedRows >= RowsNeedToDeleteToChangeLevel)
         {
             self.deletedRows -= RowsNeedToDeleteToChangeLevel;

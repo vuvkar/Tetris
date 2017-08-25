@@ -15,6 +15,10 @@
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *LeftSwipeGestureRecognizer;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *comingFigureView;
+@property (strong, nonatomic) IBOutlet PopUpView *PausePopUp;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *highestScoreLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *levelPassProgressBar;
 
 @end
 
@@ -22,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.PausePopUp removeFromSuperview];
     [GameEngine sharedEngine].delegate = self;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.board
                                                           attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:CellSize * BoardColumnsSize]];
@@ -36,6 +41,15 @@
 - (IBAction)rotate:(id)sender {
     [GameEngine sharedEngine].shouldRotate = YES;
 }
+- (IBAction)resumeAction:(id)sender {
+    [self.PausePopUp removeAnimate];
+    [[GameEngine sharedEngine] startTact];
+}
+
+- (IBAction)restartAction:(id)sender {
+}
+- (IBAction)mainMenuAction:(id)sender {
+}
 
 -(void)levelIsChanged:(int)newLevel
 {
@@ -45,6 +59,16 @@
 -(void)moveFigure:(Figure *)figure
 {
     [self.board updateFigurePlace:figure];
+}
+
+- (IBAction)PauseButtonAction:(id)sender {
+    [[GameEngine sharedEngine].timer invalidate];
+    [self.PausePopUp showInView:self.view animated:YES];
+}
+
+-(void)pauseGame
+{
+    [self PauseButtonAction:nil];
 }
 
 -(void)rotateFigure:(Figure *)figure
@@ -95,6 +119,8 @@
 - (void)rowsAreDeleted:(NSMutableArray <NSNumber *> *)rows
 {
     [self.board deleteRowsAtIndexes:rows];
+    self.levelPassProgressBar.progress = [GameEngine sharedEngine].deletedRows / RowsNeedToDeleteToChangeLevel;
+    self.scoreLabel.text = [[NSNumber numberWithInt:[GameEngine sharedEngine].score] stringValue];
 }
 /*
  #pragma mark - Navigation

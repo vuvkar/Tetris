@@ -11,6 +11,7 @@
 #import "BoardView.h"
 #import "CellView.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "PopUpView.h"
 
 @interface PlayViewController : UIViewController
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E41F8FBF1F4F57C900C12D99 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E41F8FBE1F4F57C900C12D99 /* DataManager.m */; };
+		E41F8FC21F4F7E3D00C12D99 /* PopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = E41F8FC11F4F7E3D00C12D99 /* PopUpView.m */; };
 		E4227FC41F4E1A3000C0506D /* Dosis-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBD1F4E1A3000C0506D /* Dosis-Bold.ttf */; };
 		E4227FC51F4E1A3000C0506D /* darkCell.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBE1F4E1A3000C0506D /* darkCell.png */; };
 		E4227FC61F4E1A3000C0506D /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = E4227FBF1F4E1A3000C0506D /* trophy.png */; };
@@ -48,6 +49,8 @@
 /* Begin PBXFileReference section */
 		E41F8FBD1F4F57C800C12D99 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		E41F8FBE1F4F57C900C12D99 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		E41F8FC01F4F7E3D00C12D99 /* PopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpView.h; sourceTree = "<group>"; };
+		E41F8FC11F4F7E3D00C12D99 /* PopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpView.m; sourceTree = "<group>"; };
 		E4227FBD1F4E1A3000C0506D /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Bold.ttf"; sourceTree = "<group>"; };
 		E4227FBE1F4E1A3000C0506D /* darkCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkCell.png; sourceTree = "<group>"; };
 		E4227FBF1F4E1A3000C0506D /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				E453F33A1F4499FA0059120E /* CellView.m */,
 				E453F33C1F449CBB0059120E /* BoardView.h */,
 				E453F33D1F449CBB0059120E /* BoardView.m */,
+				E41F8FC01F4F7E3D00C12D99 /* PopUpView.h */,
+				E41F8FC11F4F7E3D00C12D99 /* PopUpView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				E453F32A1F4343C50059120E /* Figure.m in Sources */,
 				E41F8FBF1F4F57C900C12D99 /* DataManager.m in Sources */,
 				E453F31F1F4340620059120E /* GameEngine.m in Sources */,
+				E41F8FC21F4F7E3D00C12D99 /* PopUpView.m in Sources */,
 				E453F3411F45EB060059120E /* FigureView.m in Sources */,
 				E453F3331F446A740059120E /* PlayViewController.m in Sources */,
 				E4D5E9281F4D881D00764F17 /* InitialViewController.m in Sources */,

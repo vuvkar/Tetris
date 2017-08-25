@@ -48,7 +48,7 @@
 
 -(void)updateFigurePlace:(Figure *)figure
 {
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:FastAnimationSpeed animations:^{
         FigureView *figureView = [self viewWithTag:[figure.identificator integerValue]];
         figureView.frame = CGRectMake(figure.anchorPoint.column  * CellSize, (BoardRowSize -  figure.anchorPoint.row - 1)  * CellSize, figureView.frame.size.width, figureView.frame.size.height);
     }];
@@ -72,7 +72,7 @@
         for(FigureView *subFigureView in self.subviews)
             if([subFigureView isMemberOfClass:[FigureView class]]){
                 for (CellView* subCellView in subFigureView.subviews) {
-                    [UIView animateWithDuration:0.1 animations:^{
+                    [UIView animateWithDuration:FastAnimationSpeed animations:^{
                         if(subCellView.row == [indexes[i] intValue]){
                             [subCellView removeFromSuperview];
                            // [temp addObject:subCellView];
