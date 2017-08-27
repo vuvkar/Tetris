@@ -24,17 +24,17 @@
 #define Green [UIColor colorWithRed:0.85 green:0.92 blue:0.85 alpha:1.0]
 #define LightGreen [UIColor colorWithRed:0.95 green:0.97 blue:0.93 alpha:1.0]
 
-#define CellSize 35
+#define CellSize 31
 #define GeneratedFigureCellSize 20
 
 
 
 
 typedef NS_ENUM(NSInteger, FigureTypes) {
-    Seven,
+    ReverseThunder,
     Thunder,
     ReverseSeven,
-    ReverseThunder,
+    Seven,
     Row,
     Cube,
     Mushroom 

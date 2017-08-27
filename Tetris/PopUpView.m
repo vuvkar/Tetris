@@ -32,8 +32,10 @@
     [UIView animateWithDuration:.25 animations:^{
         self.transform = CGAffineTransformMakeScale(1.3, 1.3);
         self.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        if (finished) {
+    } completion:^(BOOL finished)
+    {
+        if (finished)
+        {
             [self removeFromSuperview];
             self.backgroundColor = Green;
             
@@ -47,7 +49,8 @@
     self.layer.cornerRadius = 5;
     self.layer.shadowOpacity = 0.8;
     self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    if (animated) {
+    if (animated)
+    {
         [self showAnimate];
     }
 }

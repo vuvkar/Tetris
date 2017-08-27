@@ -19,7 +19,8 @@
     {
         for(int i = 0; i < [figure.matrix count]; i++)
         {
-            for(int j = 0; j < [figure.matrix[0] count]; j++){
+            for(int j = 0; j < [figure.matrix[0] count]; j++)
+            {
                 if([figure.matrix[i][j] isEqual:@1])
                 {
                     CellView *cell = [[CellView alloc] initForFigure:(FigureTypes)figure.type andSize:GeneratedFigureCellSize];

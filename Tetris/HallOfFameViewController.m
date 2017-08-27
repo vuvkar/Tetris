@@ -19,11 +19,13 @@
 @end
 
 @implementation HallOfFameViewController
-- (IBAction)goBackAction:(id)sender {
+- (IBAction)goBackAction:(id)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     NSArray *gold = [[DataManager sharedManaer].allData objectForKey:@"Gold"];
     NSArray *silver = [[DataManager sharedManaer].allData objectForKey:@"Silver"];
@@ -42,7 +44,8 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

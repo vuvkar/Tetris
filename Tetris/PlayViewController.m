@@ -29,11 +29,13 @@
 
 @implementation PlayViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self.PausePopUp removeFromSuperview];
     [self.gameIsEndedPopUpView removeFromSuperview];
     [GameEngine sharedEngine].delegate = self;
+    [[GameEngine sharedEngine] startGame];
     self.allowAudio = YES;
     self.player = [[AudioManager alloc] init];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.board
@@ -51,39 +53,43 @@
 
 #pragma mark IBActions
 
-- (IBAction)exitWithSaving:(id)sender {
+- (IBAction)exitWithSaving:(id)sender
+{
     [[DataManager sharedManaer] saveCurrentGameWithScore:[self.scoreLabel.text intValue] andLevel:[self.levelLabel.text intValue]];
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)exitWithoutSaving:(id)sender {
+- (IBAction)exitWithoutSaving:(id)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)rotate:(id)sender {
+- (IBAction)rotate:(id)sender
+{
     [GameEngine sharedEngine].shouldRotate = YES;
 }
-- (IBAction)resumeAction:(id)sender {
+- (IBAction)resumeAction:(id)sender
+{
     [self.PausePopUp removeAnimate];
     [[GameEngine sharedEngine] startTact];
 }
-- (IBAction)restartAction:(id)sender {
-    [[GameEngine sharedEngine] endGame];
-    for (FigureView *subview in [self.board subviews]) {
-        if([subview isMemberOfClass:[FigureView class]])
-            [subview removeFromSuperview];
-    }
+- (IBAction)restartAction:(id)sender
+{
+    [[GameEngine sharedEngine] clearBoard];
+    [self.board clearBoard];
     [self.comingFigureView.subviews[0] removeFromSuperview];
-    [GameEngine sharedEngine].delegate = self;
     [self.PausePopUp removeAnimate];
     self.highestScoreLabel.text = [[NSNumber numberWithInt: [DataManager sharedManaer].highestScore] stringValue];
     self.levelPassProgressBar.progress = 0.0;
     self.scoreLabel.text = @"0";
+    [[GameEngine sharedEngine] startGame];
 }
-- (IBAction)mainMenuAction:(id)sender {
+- (IBAction)mainMenuAction:(id)sender
+{
     [[GameEngine sharedEngine] endGame];
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)audioControlAction:(id)sender {
+- (IBAction)audioControlAction:(id)sender
+{
     if(self.allowAudio)
     {
         self.allowAudio = NO;
@@ -98,19 +104,23 @@
     }
     
 }
-- (IBAction)PauseButtonAction:(id)sender {
+- (IBAction)PauseButtonAction:(id)sender
+{
     [[GameEngine sharedEngine].timer invalidate];
     [self.PausePopUp showInView:self.view animated:YES];
 }
-- (IBAction)takeReight:(id)sender {
+- (IBAction)takeReight:(id)sender
+{
     [GameEngine sharedEngine].shouldTheFigureGoLeftOrRight = YES;
     [GameEngine sharedEngine].goingDirection = Right;
 }
-- (IBAction)takeLeft:(id)sender {
+- (IBAction)takeLeft:(id)sender
+{
     [GameEngine sharedEngine].shouldTheFigureGoLeftOrRight = YES;
     [GameEngine sharedEngine].goingDirection = Left;
 }
-- (IBAction)swipeDown:(id)sender {
+- (IBAction)swipeDown:(id)sender
+{
     [GameEngine sharedEngine].didSwipeDown = YES;
 }
 
@@ -121,7 +131,6 @@
 {
     self.finalScore.text = self.scoreLabel.text;
     [self.gameIsEndedPopUpView showInView:self.view animated:YES];
-    [[GameEngine sharedEngine] endGame];
 }
 
 -(void)levelIsChanged:(int)newLevel
@@ -135,9 +144,9 @@
 
 -(void)figureHasChangedPlace:(Directions)direction withCount:(int)count
 {
-    
+    if(self.allowAudio)
+        [self.player playMoveDown];
     [self.board  takeFigureToDirection:direction withCount:(int)count];
-    [self.player playMoveDown];
 }
 
 -(void)pauseGame
@@ -179,7 +188,8 @@
     self.scoreLabel.text = [[NSNumber numberWithInt:[GameEngine sharedEngine].score] stringValue];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

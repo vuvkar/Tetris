@@ -26,5 +26,6 @@
 -(void)rotate:(Figure *)figure;
 -(void)takeFigureToDirection:(Directions)direction withCount:(int)count;
 -(void)stickFigure;
+-(void)clearBoard;
 
 @end

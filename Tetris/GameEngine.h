@@ -57,5 +57,6 @@
 -(void)forceDown;
 -(void)endGame;
 -(void)clearBoard;
+-(void)startGame;
 
 @end

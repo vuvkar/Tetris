@@ -8,30 +8,28 @@
 
 #import "GameEngine.h"
 
-static GameEngine *sharedEngine = nil;
+static GameEngine *_sharedEngine = nil;
 
 @implementation GameEngine
 
 +(instancetype)sharedEngine
 {
-    if(sharedEngine == nil)
+    if(_sharedEngine == nil)
     {
-        sharedEngine  = [[GameEngine alloc] init];
-        sharedEngine.board = [[NSMutableArray alloc] init];
-        sharedEngine.tactSpeed = InitalTactSpeed;
-        for(int i = 0; i < BoardRowsNumber; i++)
-        {
-            NSMutableArray *temp = [[NSMutableArray alloc] init]; //adding NSNulls to board, in order not to crush
-            for(int j = 0; j < BoardColumnsNumber; j++)
-                [temp addObject:[NSNull null]];
-            [temp addObject:[NSNumber numberWithInt:BoardColumnsNumber]]; //this extra column will have number which keeps how many nils are in current row, so not to checking ecery cell for deletion
-            [sharedEngine.board addObject:temp];
-        }
-        sharedEngine.isItTimeToCreateNewFigure = YES;
-        [sharedEngine generateNewFigure]; //as it's the first move it board will need already generated figure
-        [sharedEngine startTact]; //so it begins :]
+        _sharedEngine  = [[GameEngine alloc] init];
+        _sharedEngine.board = [[NSMutableArray alloc] init];
+        _sharedEngine.tactSpeed = InitalTactSpeed;
     }
-    return  sharedEngine;
+    return  _sharedEngine;
+}
+
+-(void)startGame
+{
+    self.isGameEnded = NO;
+    [self clearBoard];
+    [self generateNewFigure]; //as it's the first move it board will need already generated figure
+    self.isItTimeToCreateNewFigure = YES;
+    [self startTact];
 }
 
 -(void)startTact
@@ -48,12 +46,12 @@ static GameEngine *sharedEngine = nil;
                       if(self.isItTimeToCreateNewFigure)
                       {
                           [self createFigure]; //takes already generated figure
-                          [self generateNewFigure]; //generated, for the next start falling function
                           if(self.isGameEnded)
                           {
                               [self.timer invalidate];
-                              return;
+                              return ;
                           }
+                          [self generateNewFigure]; //generated, for the next start falling function
                           self.isItTimeToCreateNewFigure = NO;
                       }
                       if(self.currentFigure.notTheFirstStep && !self.isLastMove)
@@ -89,7 +87,8 @@ static GameEngine *sharedEngine = nil;
                                       [self.board[point.row] replaceObjectAtIndex:BoardColumnsNumber withObject:@([[self.board[point.row] lastObject] intValue] - 1)];
                                   }
                                   self.isItTimeToCreateNewFigure = YES;
-                                  [self.delegate stickFigure];
+                                  if([self.delegate respondsToSelector:@selector(stickFigure)])
+                                      [self.delegate stickFigure];
                                   [self deleteRows];
                                   break;
                               }
@@ -161,14 +160,14 @@ static GameEngine *sharedEngine = nil;
     }
     generatedFigure.orientation = 0;
     self.generatedFigure = generatedFigure;
-    [self.delegate newFigureIsGenerated:self.generatedFigure];
+    if([self.delegate respondsToSelector:@selector(newFigureIsGenerated:)])
+        [self.delegate newFigureIsGenerated:self.generatedFigure];
 }
 
 -(void)createFigure
 {
     self.isLastMove = NO;
     self.currentFigure = self.generatedFigure;
-    
     switch (self.generatedFigure.type)
     {
         case Cube:
@@ -241,12 +240,13 @@ static GameEngine *sharedEngine = nil;
     {
         if([self.board[point.row][point.column] isEqual:@1])
         {
-            [self.delegate gameIsEnded];
+            [self endGame];
             return;
         }
     }
     self.generatedFigure = nil;
-    [self.delegate newFigureIsCreated:self.currentFigure withAnchor:self.figureAnchorPoint];
+    if([self.delegate respondsToSelector:@selector(newFigureIsCreated:withAnchor:)])
+        [self.delegate newFigureIsCreated:self.currentFigure withAnchor:self.figureAnchorPoint];
 }
 
 
@@ -255,9 +255,11 @@ static GameEngine *sharedEngine = nil;
     NSMutableArray <NSNumber *> *rows = [NSMutableArray arrayWithArray:@[]];
     int score = 0;
     int counter = 0;
-    for (int i = 0; i < [self.figureTakenPlaces count]; i++) {
+    for (int i = 0; i < [self.figureTakenPlaces count]; i++)
+    {
         MatrixPoint *point = self.figureTakenPlaces[i];
-        if([[self.board[point.row] lastObject] intValue] == 0){
+        if([[self.board[point.row] lastObject] intValue] == 0)
+        {
             score += NormalScore + counter * AdditionalScoreForEachLine;
             [rows addObject:[NSNumber numberWithInt:point.row]];
             [self.board removeObjectAtIndex:point.row];
@@ -265,7 +267,7 @@ static GameEngine *sharedEngine = nil;
             for(int j = 0; j < BoardColumnsNumber; j++)
                 [temp addObject:[NSNull null]];
             [temp addObject:[NSNumber numberWithInt:BoardColumnsNumber]];
-            [sharedEngine.board addObject:temp];
+            [self.board addObject:temp];
             counter++;
             i--;
         }
@@ -280,18 +282,21 @@ static GameEngine *sharedEngine = nil;
             if(self.tactSpeed > 0.1) //the fastest speed
                 self.tactSpeed += Speeding;
             self.level++;
-            [self.delegate levelIsChanged:self.level];
+            if([self.delegate respondsToSelector:@selector(levelIsChanged:)])
+                [self.delegate levelIsChanged:self.level];
             [self.timer invalidate];
             [self startTact];
         }
-        [self.delegate rowsAreDeleted:rows];
+        if([self.delegate respondsToSelector:@selector(rowsAreDeleted:)])
+            [self.delegate rowsAreDeleted:rows];
     }
 }
 
 -(void)forceDown //finding the closest brick
 {
     int min = INT_MAX;
-    for(MatrixPoint *temp in self.figureTakenPlaces){
+    for(MatrixPoint *temp in self.figureTakenPlaces)
+    {
         int counter = 0;
         for(int i = temp.row - 1; i >= 0; i--){
             counter++;
@@ -308,27 +313,32 @@ static GameEngine *sharedEngine = nil;
             }
         }
     }
-    for(MatrixPoint *temp in self.figureTakenPlaces){
+    for(MatrixPoint *temp in self.figureTakenPlaces)
+    {
         self.board[temp.row - min][temp.column] = @1;
         [self.board[temp.row - min] replaceObjectAtIndex:BoardColumnsNumber withObject:@([[self.board[temp.row - min] lastObject] intValue] - 1)];
         temp.row -= min;
     }
     self.figureAnchorPoint = [MatrixPoint initWithRow:self.figureAnchorPoint.row - min andColumn:self.figureAnchorPoint.column];
-    [self.delegate figureHasChangedPlace:Down withCount:min];
-    [self.delegate stickFigure];
+    if([self.delegate respondsToSelector:@selector(figureHasChangedPlace:withCount:)])
+        [self.delegate figureHasChangedPlace:Down withCount:min];
+    if([self.delegate respondsToSelector:@selector(stickFigure)])
+        [self.delegate stickFigure];
     [self deleteRows];
 }
 
 -(BOOL)isPossibleToRotate
 {
-    switch (self.currentFigure.type) { //writing this fucking function, was the ugliest thing
+    switch (self.currentFigure.type)
+    { //writing this fucking function, was the ugliest thing
         case Cube:
             return NO; //Actually it can rotate, but wrote No, for not entering <if> in tact function
             break;
             
         case Row:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     return (self.figureTakenPlaces[1].row - 2 >= 0
                             && self.figureTakenPlaces[1].row + 1 < BoardRowsNumber
@@ -348,7 +358,8 @@ static GameEngine *sharedEngine = nil;
         }
         case Thunder:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     return (self.figureTakenPlaces[2].column - 2 >= 0
                             && self.figureTakenPlaces[3].row + 2 >= 0
@@ -366,7 +377,8 @@ static GameEngine *sharedEngine = nil;
         }
         case Mushroom:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     return (self.figureTakenPlaces[1].row + 1 < BoardRowsNumber
                             && self.board[self.figureTakenPlaces[1].row + 1][self.figureTakenPlaces[1].column] == [NSNull null]);
@@ -388,7 +400,8 @@ static GameEngine *sharedEngine = nil;
         }
         case ReverseThunder:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     return (self.figureTakenPlaces[2].row + 1 < BoardRowsNumber
                             && self.figureTakenPlaces[3].column + 2 < BoardColumnsNumber
@@ -407,7 +420,8 @@ static GameEngine *sharedEngine = nil;
         }
         case Seven:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     return (self.figureTakenPlaces[1].row - 1 >= 0
                             && self.figureTakenPlaces[1].row + 1 < BoardRowsNumber
@@ -445,7 +459,8 @@ static GameEngine *sharedEngine = nil;
         }
         case ReverseSeven:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     return (self.figureTakenPlaces[2].row - 1 >= 0
                             && self.figureTakenPlaces[2].row + 1 < BoardRowsNumber
@@ -490,46 +505,53 @@ static GameEngine *sharedEngine = nil;
     switch (direction) {
         case Left:{
             BOOL canMove = YES;
-            for (MatrixPoint *point in self.figureTakenPlaces) {
-                if(point.column == 0 || [self.board[point.row][point.column - 1] isEqual:@1]){
+            for (MatrixPoint *point in self.figureTakenPlaces)
+            {
+                if(point.column == 0 || [self.board[point.row][point.column - 1] isEqual:@1])
+                {
                     canMove = NO;
                     break;
                 }
             }
             if(canMove){
-                for (MatrixPoint *point in self.figureTakenPlaces) {
+                for (MatrixPoint *point in self.figureTakenPlaces)
+                {
                     [point moveLeft];
                 }
                 [self.figureAnchorPoint moveLeft];
-                [self.delegate figureHasChangedPlace:Left withCount:1];
+                if([self.delegate respondsToSelector:@selector(figureHasChangedPlace:withCount:)])
+                    [self.delegate figureHasChangedPlace:Left withCount:1];
             }
             break;
         }
             
-        case Right:{
+        case Right:
+        {
             BOOL canMove = YES;
-            for (MatrixPoint *point in self.figureTakenPlaces) {
+            for (MatrixPoint *point in self.figureTakenPlaces)
+            {
                 if(point.column + 1 >= BoardColumnsNumber || [self.board[point.row][point.column + 1] isEqual:@1]){
                     canMove = NO;
                     break;
                 }
             }
-            if(canMove){
-                for (MatrixPoint *point in self.figureTakenPlaces) {
+            if(canMove)
+            {
+                for (MatrixPoint *point in self.figureTakenPlaces)
                     [point moveRight];
-                }
                 [self.figureAnchorPoint moveRight];
-                [self.delegate figureHasChangedPlace:Right withCount:1];
+                if([self.delegate respondsToSelector:@selector(figureHasChangedPlace:withCount:)])
+                    [self.delegate figureHasChangedPlace:Right withCount:1];
             }
             break;
         }
             
         case Down:{
-            for (MatrixPoint *temp in self.figureTakenPlaces) {
+            for (MatrixPoint *temp in self.figureTakenPlaces)
                 [temp moveDown];
-            }
             [self.figureAnchorPoint moveDown];
-            [self.delegate figureHasChangedPlace:Down withCount:1];
+            if([self.delegate respondsToSelector:@selector(figureHasChangedPlace:withCount:)])
+                [self.delegate figureHasChangedPlace:Down withCount:1];
             break;
         }
     }
@@ -537,12 +559,14 @@ static GameEngine *sharedEngine = nil;
 
 -(void)rotate //changing orientation
 {
-    switch (self.currentFigure.type) {
+    switch (self.currentFigure.type)
+    {
         case Cube:
             break;
         case Mushroom:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:{
                     
                     self.currentFigure.matrix = @[@[@1, @0], @[@1, @1], @[@1, @0]];
@@ -551,21 +575,24 @@ static GameEngine *sharedEngine = nil;
                     
                     break;
                 }
-                case 1:{
+                case 1:
+                {
                     self.currentFigure.matrix = @[@[@0, @1, @0], @[@1, @1, @1]];
                     [self.figureTakenPlaces replaceObjectAtIndex:3 withObject:[MatrixPoint initWithRow:self.figureTakenPlaces[1].row  andColumn:self.figureTakenPlaces[1].column - 1]];
                     self.figureAnchorPoint = [MatrixPoint initWithRow:(self.figureTakenPlaces[3].row + 1) andColumn:self.figureTakenPlaces[3].column];
                     
                     break;
                 }
-                case 2:{
+                case 2:
+                {
                     
                     self.currentFigure.matrix = @[@[@0, @1], @[@1, @1], @[@0, @1]];
                     [self.figureTakenPlaces replaceObjectAtIndex:2 withObject:[MatrixPoint initWithRow:self.figureTakenPlaces[1].row - 1 andColumn:self.figureTakenPlaces[1].column]];
                     self.figureAnchorPoint = [MatrixPoint initWithRow:self.figureTakenPlaces[0].row andColumn:self.figureTakenPlaces[0].column - 1];
                     break;
                 }
-                case 3:{
+                case 3:
+                {
                     self.currentFigure.matrix = @[@[@1, @1, @1], @[@0, @1, @0]];
                     [self.figureTakenPlaces replaceObjectAtIndex:0 withObject:[MatrixPoint initWithRow:self.figureTakenPlaces[1].row  andColumn:self.figureTakenPlaces[1].column + 1]];
                     [self.figureTakenPlaces exchangeObjectAtIndex:0 withObjectAtIndex:3];
@@ -579,7 +606,8 @@ static GameEngine *sharedEngine = nil;
         }
         case Seven:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     self.currentFigure.matrix = @[@[@1, @1], @[@1, @0], @[@1, @0]];
                     self.figureTakenPlaces = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.figureTakenPlaces[1].row - 1 andColumn:self.figureTakenPlaces[1].column], self.figureTakenPlaces[1], [MatrixPoint initWithRow:self.figureTakenPlaces[1].row + 1 andColumn:self.figureTakenPlaces[1].column], [MatrixPoint initWithRow:self.figureTakenPlaces[1].row + 1 andColumn:self.figureTakenPlaces[1].column + 1]]];
@@ -607,7 +635,8 @@ static GameEngine *sharedEngine = nil;
         }
         case ReverseSeven:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     self.currentFigure.matrix = @[@[@1, @0], @[@1, @0], @[@1, @1]];
                     self.figureTakenPlaces = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.figureTakenPlaces[2].row + 1 andColumn:self.figureTakenPlaces[2].column], self.figureTakenPlaces[2], [MatrixPoint initWithRow:self.figureTakenPlaces[2].row - 1 andColumn:self.figureTakenPlaces[2].column], [MatrixPoint initWithRow:self.figureTakenPlaces[2].row - 1 andColumn:self.figureTakenPlaces[2].column + 1]]];
@@ -634,16 +663,18 @@ static GameEngine *sharedEngine = nil;
         }
         case Row:
         {
-            switch (self.currentFigure.orientation){
-                case 0:{
-                    
+            switch (self.currentFigure.orientation)
+            {
+                case 0:
+                {
                     self.currentFigure.matrix = @[@[@1], @[@1], @[@1], @[@1]];
                     MatrixPoint *point = self.figureTakenPlaces[1];
                     self.figureTakenPlaces = [NSMutableArray arrayWithArray:@[point, [MatrixPoint initWithRow:point.row + 1 andColumn:point.column], [MatrixPoint initWithRow:point.row - 1 andColumn:point.column], [MatrixPoint initWithRow:point.row - 2 andColumn:point.column]]];
                     self.figureAnchorPoint = [MatrixPoint initWithRow:self.figureTakenPlaces[1].row  andColumn:self.figureTakenPlaces[1].column];
                     break;
                 }
-                case 1:{
+                case 1:
+                {
                     self.currentFigure.matrix = @[@[@1, @1, @1, @1]];
                     MatrixPoint *point = self.figureTakenPlaces[0];
                     self.figureTakenPlaces = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:point.row  andColumn:point.column - 1], point, [MatrixPoint initWithRow:point.row  andColumn:point.column + 1], [MatrixPoint initWithRow:point.row  andColumn:point.column + 2]]];
@@ -656,7 +687,8 @@ static GameEngine *sharedEngine = nil;
         }
         case Thunder:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     self.currentFigure.matrix = @[ @[@0, @1, @1], @[@1, @1, @0]];
                     self.figureTakenPlaces = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.figureTakenPlaces[2].row andColumn:self.figureTakenPlaces[2].column - 2 ], self.figureTakenPlaces[1], self.figureTakenPlaces[0], [MatrixPoint initWithRow:self.figureTakenPlaces[3].row + 2 andColumn:self.figureTakenPlaces[3].column]]];
@@ -676,7 +708,8 @@ static GameEngine *sharedEngine = nil;
         }
         case ReverseThunder:
         {
-            switch (self.currentFigure.orientation) {
+            switch (self.currentFigure.orientation)
+            {
                 case 0:
                     self.currentFigure.matrix = @[ @[@1, @1, @0], @[@0, @1, @1]];
                     self.figureTakenPlaces = [NSMutableArray arrayWithArray:@[[MatrixPoint initWithRow:self.figureTakenPlaces[2].row + 1 andColumn:self.figureTakenPlaces[2].column ], self.figureTakenPlaces[0], self.figureTakenPlaces[1], [MatrixPoint initWithRow:self.figureTakenPlaces[1].row  andColumn:self.figureTakenPlaces[3].column + 2]]];
@@ -686,30 +719,40 @@ static GameEngine *sharedEngine = nil;
                 case 1:
                     self.currentFigure.matrix = @[ @[@0, @1], @[@1, @1], @[@1, @0]];
                     self.figureTakenPlaces = [NSMutableArray arrayWithArray:@[self.figureTakenPlaces[1], self.figureTakenPlaces[2], [MatrixPoint initWithRow:self.figureTakenPlaces[2].row andColumn:self.figureTakenPlaces[2].column - 1 ],   [MatrixPoint initWithRow:self.figureTakenPlaces[0].row - 2  andColumn:self.figureTakenPlaces[0].column ]]];
-                    self.figureAnchorPoint = [MatrixPoint initWithRow:self.figureTakenPlaces[1].row andColumn:self.figureTakenPlaces[1].column - 1];
+                    self.figureAnchorPoint = [MatrixPoint initWithRow:self.figureTakenPlaces[0].row andColumn:self.figureTakenPlaces[0].column - 1];
                     self.currentFigure.orientation = -1;
                     break;
             }
         }
     }
     self.currentFigure.orientation ++;
-    [self.delegate figureIsRotated:self.currentFigure withAnchor:self.figureAnchorPoint];
+    if([self.delegate respondsToSelector:@selector(figureIsRotated:withAnchor:)])
+        [self.delegate figureIsRotated:self.currentFigure withAnchor:self.figureAnchorPoint];
 }
 
 -(void)clearBoard
 {
-    for(int i = 0; i < [self.board count]; i++){
+    [self.board removeAllObjects];
+    for(int i = 0; i < BoardRowsNumber; i++)
+    {
+        NSMutableArray *temp = [[NSMutableArray alloc] init]; //adding NSNulls to board, in order not to crush
         for(int j = 0; j < BoardColumnsNumber; j++)
-            [self.board[i] replaceObjectAtIndex:j withObject:[NSNull null]];
-        [self.board[i] replaceObjectAtIndex:BoardColumnsNumber withObject:[NSNumber numberWithInt:BoardColumnsNumber]];
+            [temp addObject:[NSNull null]];
+        [temp addObject:[NSNumber numberWithInt:BoardColumnsNumber]]; //this extra column will have number which keeps how many nils are in current row, so not to checking ecery cell for deletion
+        [self.board addObject:temp];
     }
+    
 }
 
 -(void)endGame
 {
+    
     [self.timer invalidate];
+    self.isGameEnded = YES;
     [self clearBoard];
-    [self.delegate gameIsEnded];
+    if([self.delegate respondsToSelector:@selector(gameIsEnded)])
+        [self.delegate gameIsEnded];
+    
 }
 
 @end

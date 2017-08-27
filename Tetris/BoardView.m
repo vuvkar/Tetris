@@ -36,6 +36,17 @@
     return self;
 }
 
+-(void)clearBoard
+{
+    [self.currentFigureView removeFromSuperview];
+    for(int i = 0; i < [self.board count]; i++)
+        for (UIView *subview in self.board[i].subviews)
+        {
+            if([subview isMemberOfClass:[CellView class]])
+               [subview removeFromSuperview];
+        }
+}
+
 -(void)createFigureView:(Figure *)figure
 {
     FigureView* figureView = [[FigureView alloc] initWithFrame:CGRectMake(self.figureViewAnchorPoint.column * CellSize , (BoardRowsNumber -  self.figureViewAnchorPoint.row - 1) * CellSize , [figure.matrix[0] count] * CellSize, [figure.matrix count] * CellSize)];

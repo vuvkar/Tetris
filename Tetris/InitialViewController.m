@@ -18,7 +18,8 @@
 
 @implementation InitialViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
@@ -32,21 +33,25 @@
     }
    ///  Do any additional setup after loading the view.
 }
-- (IBAction)saveUsername:(id)sender {
+- (IBAction)saveUsername:(id)sender
+{
     [[DataManager sharedManaer] changeUsername:self.enterUsernameTextField.text];
     self.usernameLabel.text = self.enterUsernameTextField.text;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)changeUsername:(id)sender {
+- (IBAction)changeUsername:(id)sender
+{
     [self.popUpView showInView:self.view animated:YES];
 }
 
-- (IBAction)closePopup:(id)sender {
+- (IBAction)closePopup:(id)sender
+{
     [self.popUpView removeAnimate];
 }
 
