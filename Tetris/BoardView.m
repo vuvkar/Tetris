@@ -15,90 +15,134 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {
-        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, CellSize * BoardColumnsSize, CellSize * BoardRowSize);
+        self.board = [[NSMutableArray alloc] init];
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, CellSize * BoardColumnsNumber, CellSize * BoardRowsNumber);
         self.backgroundColor = LightGreen;
-        self.layer.cornerRadius = 5;
         UIImage *cellImage = [UIImage imageNamed:@"normalCell.png"];
         [ImageManager resizeImage:cellImage withWidth:CellSize withHeight:CellSize];
-        for(int i = 0; i < BoardRowSize; i++)
-            for(int j = 0; j < BoardColumnsSize; j++)
+        for(int i = 0; i < BoardRowsNumber; i++)
+        {
+            UIView *row = [[UIView alloc] initWithFrame:CGRectMake(0, i * CellSize, CellSize * BoardColumnsNumber, CellSize)];
+            for(int j = 0; j < BoardColumnsNumber; j++)
             {
                 UIImageView *cellImageView = [[UIImageView alloc] initWithImage:cellImage];
-                cellImageView.layer.borderWidth = 0;
-                cellImageView.frame = CGRectMake(CellSize * j, CellSize * i, CellSize, CellSize);
-                [self addSubview:cellImageView];
+                cellImageView.frame = CGRectMake(CellSize * j, 0, CellSize, CellSize);
+                [row addSubview:cellImageView];
             }
-        self.cellSubviews = [NSMutableArray arrayWithArray:@[]];
+            [self addSubview:row];
+            [self.board addObject:row];
+        }
     }
     return self;
 }
 
--(void)createFigure:(Figure*)figure
+-(void)createFigureView:(Figure *)figure
 {
-    FigureView* figureView = [[FigureView alloc] initFromFigure:figure];
-    for (CellView *temp in figureView.subviews) {
-        [self.cellSubviews addObject:temp];
-    }
-    CGFloat height = CellSize * [figure.matrix count];
-    CGFloat width = CellSize * [figure.matrix[0] count];
-    figureView.frame = CGRectMake(figure.anchorPoint.column  * CellSize, 0, width, height);
+    FigureView* figureView = [[FigureView alloc] initWithFrame:CGRectMake(self.figureViewAnchorPoint.column * CellSize , (BoardRowsNumber -  self.figureViewAnchorPoint.row - 1) * CellSize , [figure.matrix[0] count] * CellSize, [figure.matrix count] * CellSize)];
+    for(int i = 0; i < [figure.matrix count]; i++)
+        for(int j = 0; j < [figure.matrix[0] count]; j++)
+        {
+            if([figure.matrix[i][j] isEqual:@1])
+            {
+                CellView *cell = [[CellView alloc] initForFigure:(FigureTypes)figure.type andSize:CellSize];
+                [figureView addSubview:cell];
+                cell.frame = CGRectMake(j * CellSize, i * CellSize, CellSize, CellSize);
+            }
+            
+        }
     [self addSubview:figureView];
-    figureView.tag = [figure.identificator integerValue];
+    self.currentFigureView = figureView;
 }
 
--(void)updateFigurePlace:(Figure *)figure
+-(void)moveFigureDownWithRows:(int)rows
 {
     [UIView animateWithDuration:FastAnimationSpeed animations:^{
-        FigureView *figureView = [self viewWithTag:[figure.identificator integerValue]];
-        figureView.frame = CGRectMake(figure.anchorPoint.column  * CellSize, (BoardRowSize -  figure.anchorPoint.row - 1)  * CellSize, figureView.frame.size.width, figureView.frame.size.height);
+        self.currentFigureView.frame = CGRectMake(self.currentFigureView.frame.origin.x, self.currentFigureView.frame.origin.y + CellSize * rows, self.currentFigureView.frame.size.width, self.currentFigureView.frame.size.height);
     }];
-}
-
--(void)moveFigureDown:(Figure *)figure andHowManyRows:(int)rows
-{
-    FigureView* figureView = [self viewWithTag:[figure.identificator integerValue]];
-    for (CellView *cellSubview in [figureView subviews]) {
-        cellSubview.row -= rows;
-    }
-    [self updateFigurePlace:figure];
 }
 
 
 -(void)deleteRowsAtIndexes:(NSMutableArray<NSNumber *> *)indexes
 {
-#warning veryy baaaaad functiooooon
-    //NSMutableArray <CellView *> *temp;
+    [UIView animateWithDuration:FastAnimationSpeed animations:^{
     for(int i = 0; i < [indexes count]; i++)
-        for(FigureView *subFigureView in self.subviews)
-            if([subFigureView isMemberOfClass:[FigureView class]]){
-                for (CellView* subCellView in subFigureView.subviews) {
-                    [UIView animateWithDuration:FastAnimationSpeed animations:^{
-                        if(subCellView.row == [indexes[i] intValue]){
-                            [subCellView removeFromSuperview];
-                           // [temp addObject:subCellView];
-                        }
-                        else if(subCellView.row > [indexes[i] intValue])
-                        {
-                            subCellView.frame = CGRectMake(subCellView.frame.origin.x, subCellView.frame.origin.y + CellSize, subCellView.frame.size.width, subCellView.frame.size.height);
-                            subCellView.row--;
-                        }
-                    }];
-                }
-    //for (CellView *tempView in temp) {
-      //  [self.cellSubviews removeObject:tempView];
+    {
+        int row = BoardRowsNumber - [indexes[i] intValue] - 1;
+        [self.board[row] removeFromSuperview];
+        [self.board removeObjectAtIndex:row];
+        for(int j = row - 1; j >= 0; j--)
+            self.board[j].frame = CGRectMake(0, self.board[j].frame.origin.y + CellSize, self.board[j].frame.size.width, CellSize);
+        UIImage *cellImage = [UIImage imageNamed:@"normalCell.png"];
+        UIView *newRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CellSize * BoardColumnsNumber, CellSize)];
+        for(int j = 0; j < BoardColumnsNumber; j++)
+        {
+            UIImageView *cellImageView = [[UIImageView alloc] initWithImage:cellImage];
+            cellImageView.frame = CGRectMake(CellSize * j, 0, CellSize, CellSize);
+            [newRow addSubview:cellImageView];
+        }
+        [self addSubview:newRow];
+        [self.board insertObject:newRow atIndex:0];
+
+    }
+    }];
+    
+}
+
+-(void)rotate:(Figure *)figure
+{
+    [[self.currentFigureView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.currentFigureView.frame = CGRectMake(self.figureViewAnchorPoint.column * CellSize, (BoardRowsNumber -  self.figureViewAnchorPoint.row - 1) * CellSize, [figure.matrix[0] count] * CellSize , [figure.matrix count] * CellSize);
+    for(int i = 0; i < [figure.matrix count]; i++)
+        for(int j = 0; j < [figure.matrix[0] count]; j++)
+        {
+            if([figure.matrix[i][j] isEqual:@1])
+            {
+                CellView *cell = [[CellView alloc] initForFigure:(FigureTypes)figure.type andSize:CellSize];
+                [self.currentFigureView addSubview:cell];
+                cell.frame = CGRectMake(j * CellSize, i * CellSize, CellSize, CellSize);
+            }
+        }
+}
+
+-(void) takeFigureToDirection:(Directions)direction withCount:(int)count
+{
+    switch (direction)
+    {
+        case Right:
+        {
+            self.currentFigureView.frame = CGRectMake(self.currentFigureView.frame.origin.x + CellSize, self.currentFigureView.frame.origin.y, self.currentFigureView.frame.size.width, self.currentFigureView.frame.size.height);
+            [self.figureViewAnchorPoint moveRight];
+            break;
+        }
+            
+        case Left:
+        {
+            self.currentFigureView.frame = CGRectMake(self.currentFigureView.frame.origin.x - CellSize, self.currentFigureView.frame.origin.y, self.currentFigureView.frame.size.width, self.currentFigureView.frame.size.height);
+            [self.figureViewAnchorPoint moveLeft];
+            break;
+        }
+            
+        case Down:
+        {
+            [self moveFigureDownWithRows:count];
+            self.figureViewAnchorPoint = [MatrixPoint initWithRow:self.figureViewAnchorPoint.row - count andColumn:self.figureViewAnchorPoint.column];
+            break;
+        }
     }
     
 }
 
--(void)rotate:(Figure *)figure{
-    FigureView *figureView = [self viewWithTag:[figure.identificator integerValue]];
-    [figureView removeFromSuperview];
-    FigureView* figureViewRotated = [[FigureView alloc] initFromFigure:figure];
-    CGFloat height = CellSize * [figure.matrix count];
-    CGFloat width = CellSize * [figure.matrix[0] count];
-    figureViewRotated.frame = CGRectMake(figure.anchorPoint.column  * CellSize, (BoardRowSize -  figure.anchorPoint.row - 1 )  * CellSize, width, height);
-    figureViewRotated.tag = [figure.identificator integerValue];
-    [self addSubview:figureViewRotated];
+-(void)stickFigure
+{
+    for (CellView *cell in [self.currentFigureView subviews])
+    {
+        CGRect frame = [self.currentFigureView convertRect:cell.frame toView:self];
+        int row = frame.origin.y / CellSize;
+        int column = frame.origin.x / CellSize;
+        [self.board[row] addSubview:cell];
+        cell.frame = CGRectMake(column * CellSize, 0, CellSize, CellSize);
+    }
+    [self.currentFigureView removeFromSuperview];
 }
 /*
  // Only override drawRect: if you perform custom drawing.

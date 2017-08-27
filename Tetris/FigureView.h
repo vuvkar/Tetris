@@ -15,7 +15,6 @@
 
 @property NSMutableArray <CellView *> *cells;
 
--(instancetype)initFromFigure:(Figure *)figure;
 -(instancetype)initForGeneratedFigure:(Figure *)figure;
 
 @end

@@ -16,7 +16,8 @@
     if(self)
     {
         UIImage *image;
-        switch (figure) {
+        switch (figure)
+        {
             case Thunder:
                 image = [UIImage imageNamed:@"block_brown.png"];
                 break;
@@ -39,36 +40,13 @@
                 image = [UIImage imageNamed:@"block_yellow.png"];
                 break;
         }
-        image = [self resizeImage:image withWidth:size withHeight:size];
+        image = [ImageManager resizeImage:image withWidth:size withHeight:size];
         UIImageView *cellImage = [[UIImageView alloc] initWithImage:image];
         [self addSubview: cellImage];
     }
     return self;
 }
 
--(UIImage*)resizeImage:(UIImage *)image withWidth:(double)width withHeight:(double)height
-{
-    CGSize newSize = CGSizeMake(width, height);
-    float widthRatio = newSize.width / image.size.width;
-    float heightRatio = newSize.height / image.size.height;
-    
-    if(widthRatio > heightRatio)
-    {
-        newSize=CGSizeMake(image.size.width * heightRatio, image.size.height * heightRatio);
-    }
-    else
-    {
-        newSize=CGSizeMake(image.size.width * widthRatio, image.size.height * widthRatio);
-    }
-    
-    
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

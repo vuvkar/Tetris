@@ -32,6 +32,7 @@
 		E453F33B1F4499FA0059120E /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = E453F33A1F4499FA0059120E /* CellView.m */; };
 		E453F33E1F449CBB0059120E /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E453F33D1F449CBB0059120E /* BoardView.m */; };
 		E453F3411F45EB060059120E /* FigureView.m in Sources */ = {isa = PBXBuildFile; fileRef = E453F3401F45EB060059120E /* FigureView.m */; };
+		E49613281F535863008929B2 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E49613271F535863008929B2 /* AudioManager.m */; };
 		E4D5E90E1F4C957B00764F17 /* block_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E9051F4C957A00764F17 /* block_brown.png */; };
 		E4D5E90F1F4C957B00764F17 /* block_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E9061F4C957A00764F17 /* block_green.png */; };
 		E4D5E9101F4C957B00764F17 /* block_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D5E9071F4C957A00764F17 /* block_orange.png */; };
@@ -86,6 +87,8 @@
 		E453F33D1F449CBB0059120E /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		E453F33F1F45EB060059120E /* FigureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureView.h; sourceTree = "<group>"; };
 		E453F3401F45EB060059120E /* FigureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureView.m; sourceTree = "<group>"; };
+		E49613261F535863008929B2 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		E49613271F535863008929B2 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		E4D5E9051F4C957A00764F17 /* block_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block_brown.png; sourceTree = "<group>"; };
 		E4D5E9061F4C957A00764F17 /* block_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block_green.png; sourceTree = "<group>"; };
 		E4D5E9071F4C957A00764F17 /* block_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block_orange.png; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 		E453F3211F4340960059120E /* Additional Files */ = {
 			isa = PBXGroup;
 			children = (
+				E49613261F535863008929B2 /* AudioManager.h */,
+				E49613271F535863008929B2 /* AudioManager.m */,
 				E4227FCB1F4E295E00C0506D /* ImageManager.h */,
 				E4227FCC1F4E295E00C0506D /* ImageManager.m */,
 				E41F8FBD1F4F57C800C12D99 /* DataManager.h */,
@@ -375,6 +380,7 @@
 				E453F3081F433FFD0059120E /* main.m in Sources */,
 				E4227FCD1F4E295E00C0506D /* ImageManager.m in Sources */,
 				E453F32A1F4343C50059120E /* Figure.m in Sources */,
+				E49613281F535863008929B2 /* AudioManager.m in Sources */,
 				E41F8FBF1F4F57C900C12D99 /* DataManager.m in Sources */,
 				E453F31F1F4340620059120E /* GameEngine.m in Sources */,
 				E41F8FCA1F50BFC200C12D99 /* InstructionsViewController.m in Sources */,
@@ -509,6 +515,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vuvkar.Tetris;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -522,6 +529,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vuvkar.Tetris;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

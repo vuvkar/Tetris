@@ -12,15 +12,19 @@
 #import "CellView.h"
 #import "FigureView.h"
 #import "ImageManager.h"
+@class FigureView;
 
 @interface BoardView : UIView
 
-@property NSMutableArray <CellView *> *cellSubviews;
+@property NSMutableArray <UIView *> *board;
+@property FigureView *currentFigureView;
+@property MatrixPoint *figureViewAnchorPoint;
 
--(void)createFigure:(Figure*)figure;
--(void)moveFigureDown:(Figure *)figure andHowManyRows:(int)rows;
+-(void)createFigureView:(Figure*)figure;
+-(void)moveFigureDownWithRows:(int)rows;
 -(void)deleteRowsAtIndexes:(NSMutableArray <NSNumber *> *)indexes;
--(void)rotate:(Figure*)figure;
--(void)updateFigurePlace:(Figure*)figure;
+-(void)rotate:(Figure *)figure;
+-(void)takeFigureToDirection:(Directions)direction withCount:(int)count;
+-(void)stickFigure;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Definitions.h"
+#import "ImageManager.h"
 
 @interface CellView : UIView
 

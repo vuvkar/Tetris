@@ -42,9 +42,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-
 - (IBAction)changeUsername:(id)sender {
     [self.popUpView showInView:self.view animated:YES];
 }

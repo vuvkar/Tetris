@@ -13,12 +13,15 @@
 
 @protocol GameEngineDelegate <NSObject>
 
--(void)rowsAreDeleted:(NSMutableArray <NSNumber *> *)rows;
--(void)newFigureIsCreated:(Figure*)figure;
--(void)levelIsChanged:(int)newLevel;
 -(void)newFigureIsGenerated:(Figure*)figure;
+-(void)newFigureIsCreated:(Figure*)figure withAnchor:(MatrixPoint *)anchor;
+-(void)rowsAreDeleted:(NSMutableArray <NSNumber *> *)rows;
+-(void)figureIsRotated:(Figure *)figure withAnchor:(MatrixPoint *)anchor;
+-(void)figureHasChangedPlace:(Directions)direction withCount:(int)count;
+-(void)levelIsChanged:(int)newLevel;
 -(void)pauseGame;
 -(void)gameIsEnded;
+-(void)stickFigure;
 
 @end
 
@@ -40,17 +43,19 @@
 @property BOOL isLastMove;
 @property BOOL didSwipeDown;
 @property BOOL isGameEnded;
+@property NSMutableArray <MatrixPoint *> *figureTakenPlaces;
+@property MatrixPoint *figureAnchorPoint;
+
 
 +(instancetype)sharedEngine;
 
 -(void)deleteRows;
 -(void)generateNewFigure;
 -(void)startTact;
--(void)moveCurrentFigure;
--(void)startFalling;
+-(void)createFigure;
 -(BOOL)isPossibleToRotate;
 -(void)forceDown;
 -(void)endGame;
-
+-(void)clearBoard;
 
 @end

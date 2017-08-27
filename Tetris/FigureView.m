@@ -10,34 +10,23 @@
 
 @implementation FigureView
 
--(instancetype)initFromFigure:(Figure *)figure
-{
-    self = [super init];
-    if(self)
-    {
-        self.cells = [NSMutableArray arrayWithArray:@[]];
-        for(int i = 0; i < [figure.pointsOnBoard count]; i++)
-        {
-            CellView *cell = [[CellView alloc] initForFigure:(FigureTypes)figure.type andSize:CellSize];
-            [self addSubview:cell];
-            cell.row = figure.pointsOnBoard[i].row;
-            cell.frame = CGRectMake((figure.pointsOnBoard[i].column - figure.anchorPoint.column) * CellSize, (figure.anchorPoint.row - figure.pointsOnBoard[i].row) * CellSize, CellSize, CellSize);
-            [self.cells addObject:cell];
-        }
-    }
-    return self;
-}
+
 
 -(instancetype)initForGeneratedFigure:(Figure *)figure
 {
     self = [super init];
     if(self)
     {
-        for(int i = 0; i < [figure.pointsOnBoard count]; i++)
+        for(int i = 0; i < [figure.matrix count]; i++)
         {
-            CellView *cell = [[CellView alloc] initForFigure:(FigureTypes)figure.type andSize:GeneratedFigureCellSize];
-            [self addSubview:cell];
-            cell.frame = CGRectMake((figure.pointsOnBoard[i].column - figure.anchorPoint.column) * GeneratedFigureCellSize, (figure.anchorPoint.row - figure.pointsOnBoard[i].row) * GeneratedFigureCellSize, GeneratedFigureCellSize, GeneratedFigureCellSize);
+            for(int j = 0; j < [figure.matrix[0] count]; j++){
+                if([figure.matrix[i][j] isEqual:@1])
+                {
+                    CellView *cell = [[CellView alloc] initForFigure:(FigureTypes)figure.type andSize:GeneratedFigureCellSize];
+                    [self addSubview:cell];
+                    cell.frame = CGRectMake(j * GeneratedFigureCellSize, i * GeneratedFigureCellSize, GeneratedFigureCellSize, GeneratedFigureCellSize);
+                }
+            }
         }
         self.frame = CGRectMake(0, 0, [figure.matrix[0] count] * GeneratedFigureCellSize, [figure.matrix count] * GeneratedFigureCellSize);
     }
